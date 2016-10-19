@@ -1,0 +1,12 @@
+{
+	"name": "ZOOMGIS1",
+	"main": "index.html",
+	"window": {
+		"title": "ZOOM-GIS v0.1 demo",
+		"width": 640,
+		"height": 480,
+		"min_width": 320,
+		"min_height": 200,
+		"plugin": false
+	}
+}

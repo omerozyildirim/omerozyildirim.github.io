@@ -1,0 +1,7 @@
+http://78.46.112.41/index.html
+http://78.46.112.41/bootstrap.min.css
+http://78.46.112.41/styles.css
+http://78.46.112.41/bootstrap.min.js
+http://78.46.112.41/bootbox.min.js
+http://78.46.112.41/loadInitMap.js
+http://78.46.112.41/typesOfLayers.js

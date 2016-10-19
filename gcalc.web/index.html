@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>Grade Calculator</title>
+<meta content="">
+<style></style>
+</head>
+<body>
+<h3>GRADE CALCULATOR</h3>
+<form>
+<table border="0">
+<tr><td>Mid-term 1      </td><td><input type="number" step="0" min="0" max="100" id="mt1"></td></tr>
+<tr><td>Mid-term 2      </td><td><input type="number" step="0" min="0" max="100" id="mt2"></td></tr>
+<tr><td>Homework 1      </td><td><input type="number" step="0" min="0" max="100" id="hw1"></td></tr>
+<tr><td>Homework 2      </td><td><input type="number" step="0" min="0" max="100" id="hw2"></td></tr>
+<tr><td>Homework 3      </td><td><input type="number" step="0" min="0" max="100" id="hw3"></td></tr>
+<tr><td>Homework 4      </td><td><input type="number" step="0" min="0" max="100" id="hw4"></td></tr>
+<tr><td>Homework 5      </td><td><input type="number" step="0" min="0" max="100" id="hw5"></td></tr>
+<tr><td>Homework 6      </td><td><input type="number" step="0" min="0" max="100" id="hw6"></td></tr>
+<tr><td>Homework 7      </td><td><input type="number" step="0" min="0" max="100" id="hw7"></td></tr>
+<tr><td>Final           </td><td><input type="number" step="0" min="0" max="100" id="fnl"> (50%)</td></tr>
+<tr><td>Mid-term average</td><td><input type="text"   id="mta" size="14" disabled> (30%)</td></tr>
+<tr><td>Homework average</td><td><input type="text"   id="hwa" size="14" disabled> (20%)</td></tr>
+<tr><td><b>Result</b>   </td><td><input type="text"   id="rsl" size="14" disabled></td></tr>
+<tr><td><button type=button onclick="calculate();">Calculate</button></td><td><button type=button onclick="resetall();">Clear all</button></td></tr>
+</table>
+</form>
+<script lang="javascript">
+function resetall(){
+	mt1.value = "";
+	mt2.value = "";
+	hw1.value = "";
+	hw2.value = "";
+	hw3.value = "";
+	hw4.value = "";
+	hw5.value = "";
+	hw6.value = "";
+	hw7.value = "";
+	fnl.value = "";
+	mta.value = "";
+	hwa.value = "";
+	rsl.value = "";
+}
+function checkhw(){
+	var result = true;
+	if(!hw1.checkValidity()) result = false;
+	if(!hw2.checkValidity()) result = false;
+	if(!hw3.checkValidity()) result = false;
+	if(!hw4.checkValidity()) result = false;
+	if(!hw5.checkValidity()) result = false;
+	if(!hw6.checkValidity()) result = false;
+	if(!hw7.checkValidity()) result = false;
+	return result;
+}
+function checkmt(){
+	var result = true;
+	if(
+		(!mt1.checkValidity()) ||
+		(!mt2.checkValidity()) ||
+		(mt1.value == "") ||
+		(mt2.value == "")
+	)
+		result = false;
+	return result;
+}
+function calchw(){
+	var result = 0, temp, hwnum = 0;
+	if (!checkhw()) result = false;
+	else{
+		temp = parseFloat(hw1.value); if (isFinite(temp)){result += temp; hwnum++;}
+		temp = parseFloat(hw2.value); if (isFinite(temp)){result += temp; hwnum++;}
+		temp = parseFloat(hw3.value); if (isFinite(temp)){result += temp; hwnum++;}
+		temp = parseFloat(hw4.value); if (isFinite(temp)){result += temp; hwnum++;}
+		temp = parseFloat(hw5.value); if (isFinite(temp)){result += temp; hwnum++;}
+		temp = parseFloat(hw6.value); if (isFinite(temp)){result += temp; hwnum++;}
+		temp = parseFloat(hw7.value); if (isFinite(temp)){result += temp; hwnum++;}
+		result /= hwnum;
+	}
+	return result;
+}
+function calcmt(){
+	var result;
+	if (!checkmt()) result = false;
+	else{
+		result = (parseFloat(mt1.value) + parseFloat(mt2.value)) / 2;
+		if (result < 40) result = "VF";
+	}
+	return result;
+}
+function calculate(){
+	var
+		hwavg = calchw(),
+		mtavg = calcmt(),
+		final = parseFloat(fnl.value),
+		temp
+	;
+	if (hwavg) hwa.value = hwavg; else hwa.value = "Check your input!";
+	if (mtavg) mta.value = mtavg; else mta.value = "Check your input!";
+	if (mtavg == "VF"){rsl.value = "VF"; return 0;}
+	if (final && fnl.checkValidity()){
+		if (final < 40){rsl.value = "FF"; return 0;}
+		temp = 0.2 * hwavg + 0.3 * mtavg + 0.5 * final;
+		if (temp < 40){rsl.value = "FF"; return 0;}
+		else rsl.value = temp;
+	}
+	else rsl.value = "Check your input!";
+}
+</script>
+<p><b>Usage:</b> Enter your grades to the corresponding boxes. Leave the box empty if the grade does not exist (total number of homeworks may be less than 7) but you should enter 0 for the homeworks you have not submitted or the exams you have not attended. Then click "Calculate" button. The result box will show your grade if you have passed or FF/VF accordingly if you have failed. You may clear all boxes with the "Clear all" button.</p>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<title>Image processing in JavaScript</title>
+		<meta content="">
+		<style></style>
+	</head>
+	<body>
+		<table border="1">
+			<tr>
+				<td align="center">
+					Source images:<br>
+					<img src="ml.png" id="l_img" /><img src="mm.png" id="m_img" /><img src="mr.png" id="r_img" />
+				</td>
+				<td align="center" valign="middle">
+					<button onclick="operate()">Operate</button>
+				</td>
+				<td align="center">
+					Source canvases:<br>
+					<!--canvas id="l_src" width="100" height="260"></canvas><canvas id="m_src" width="174" height="260"></canvas><canvas id="r_src" width="66" height="260"></canvas-->
+				</td>
+			</tr>
+			<tr>
+				<td align="center" colspan="3">
+					Destination canvases:<br>
+					<canvas id="l_dest" width="409" height="260"></canvas><canvas id="m_dest" width="174" height="260"></canvas><canvas id="r_dest" width="376" height="260"></canvas>
+				</td>
+			</tr>
+		</table>
+		<script>
+			function operate(){
+				var i, j, k, x, y, z, data, ws, wd, dw;
+				var limg = document.getElementById("l_img");
+				var mimg = document.getElementById("m_img");
+				var rimg = document.getElementById("r_img");
+				var ldest = document.getElementById('l_dest'); var ldctx = ldest.getContext('2d');
+				var mdest = document.getElementById('m_dest'); var mdctx = mdest.getContext('2d');
+				var rdest = document.getElementById('r_dest'); var rdctx = rdest.getContext('2d');
+				ldctx.drawImage(limg,0,0,limg.width,limg.height,0,0,ldest.width,ldest.height);
+				mdctx.drawImage(mimg,0,0,mimg.width,mimg.height,0,0,mdest.width,mdest.height);
+				//rdctx.drawImage(rimg,0,0,rimg.width,rimg.height,0,0,rdest.width,rdest.height);
+				ws = 3; wd = 5; x = 0; dw = 0.5;
+				for (i = 0; i < rimg.width; i += ws){
+					if (x >= rdest.width) break;
+					console.log(i,ws,x,wd);
+					rdctx.drawImage(rimg,i,0,ws,rimg.height,x,0,wd,rdest.height);
+					x += wd;
+					wd += dw;
+				}
+			}
+		</script>
+	</body>
+</html>

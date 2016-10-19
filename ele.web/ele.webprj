@@ -1,0 +1,21 @@
+<!DOCTYPE webproject>
+<webproject>
+  <project type="Local" name="ele" encoding="iso 8859-9" >
+    <upload/>
+    <author>Ömer ÖZYILDIRIM</author>
+    <email>omerozyildirim@hotmail.com</email>
+    <defaultDTD>-//W3C//DTD HTML 4.01 Transitional//EN</defaultDTD>
+    <item url="" uploadstatus="1" />
+    <templates>templates/</templates>
+    <toolbars>toolbars/</toolbars>
+    <item url="addjob.html" uploadstatus="1" />
+    <item url="login.php" uploadstatus="1" />
+    <annotations/>
+    <item url="index.html" uploadstatus="1" />
+    <item url="pics/" uploadstatus="1" />
+    <item url="pics/1.jpg" uploadstatus="1" />
+    <item url="pics/2.jpg" uploadstatus="1" />
+    <item url="pics/3.jpg" uploadstatus="1" />
+    <item url="jobdetail.php" uploadstatus="1" />
+  </project>
+</webproject>

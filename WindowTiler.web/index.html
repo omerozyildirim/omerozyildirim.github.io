@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>OmerO's Window Tiler</title>
+		<meta content="">
+		<style></style>
+		<script>
+			var origcolor = 'white';
+			function render_table(){
+				var tmar = 0, bmar = 0, lmar = 0, rmar = 0;
+				var wint, winl, winw, winh;
+				var i, j, tblbody = "";
+				var s = sel_resol.value.split("x");
+				var w = parseInt(s[0] / colnum.value);
+				var h = parseInt(s[1] / rownum.value);
+				tilesbody.style.width  = s[0] / 10;
+				tilesbody.style.height = s[1] / 10;
+				ssize.innerHTML = w.toString() + "*" + h.toString();
+				for (i = 0; i < rownum.value; i++){
+					tblbody += "<tr>";
+					for (j = 0; j < colnum.value; j++){
+						if (h > w) origcolor = "Blue";
+						else  origcolor = "Green";
+						tblbody += "<td align='center' ";
+						tblbody += "bgcolor='" + origcolor + "' ";
+						tblbody += "onmouseover='colorcell()' ";
+						tblbody += "onmouseout='decolorcell()' ";
+						tblbody += "><button type='button' id='btn_" + i.toString() + j.toString();
+						tblbody += "onclick='setwindow()' ";
+						tblbody += "'>" + i.toString() + j.toString() + "</button></td>";
+					}
+					tblbody += "</tr>";
+				}
+				tilesbody.innerHTML = tblbody;
+			}
+			function colorcell(){
+				setAttribute("bgcolor", "Red");
+			}
+			function decolorcell(){
+				setAttribute("bgcolor", origcolor);
+			}
+		</script>
+	</head>
+	<body>
+		<form>
+			<table border="1" id="tileshead">
+				<tr>
+					<td>Select resolution</td>
+					<td align="right">
+						<select id="sel_resol" onchange="render_table()">
+							<option value="1366x768" >1366*768 </option>
+							<option value="1440x900" >1440*900 </option>
+							<option value="1600x900" >1600*900 </option>
+							<option value="1680x1050">1680*1050</option>
+							<option value="1920x1080">1920*1080</option>
+							<option value="1920x1200">1920*1200</option>
+							<option value="2560x1080">2560*1080</option>
+							<option value="2560x1440">2560*1440</option>
+							<option value="2560x1600">2560*1600</option>
+							<option value="3840x2160">3840*2160</option>
+						</select>
+					</td>
+					<td id=ssize></td>
+				</tr>
+				<tr><td>Number of columns</td><td><input type="number" id="colnum" max="5" min="1" value="1" maxlength="3" onchange="render_table()" /></td><td align="right"><button type="button" id="btn_cn">Cancel</button></td></tr>
+				<tr><td>Number of rows   </td><td><input type="number" id="rownum" max="4" min="1" value="1" maxlength="3" onchange="render_table()" /></td><td align="right"><button type="button" id="btn_ok">Apply </button></td></tr>
+			</table>
+			<br>
+			<table border="1" id="tilesbody" style="width:100%; height:50%;"></table>
+		</form>
+	</body>
+</html>

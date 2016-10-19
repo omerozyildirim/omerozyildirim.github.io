@@ -1,0 +1,26 @@
+solve([(x1-x)^2+(y1-y)^2+(z1-z)^2=d1,(x2-x)^2+(y2-y)^2+(z2-z)^2=d2,(x3-x)^2+(y3-y)^2+(z3-z)^2=d3,(x4-x)^2+(y4-y)^2+(z4-z)^2=d4],[x,y,z]);
+
+x1*x1-x1*x+x*x+y1*y1-y1*y+y*y+z1*z1-z1*z+z*z=r1
+(x1*x1+x2*x2+x3*x3+x4*x4)-(x1+x2+x3+x4)*x+4*x*x
++(y1*y1+y2*y2+y3*y3+y4*y4)-(y1+y2+y3+y4)*y+4*y*y
++(z1*z1+z2*z2+z3*z3+z4*z4)-(z1+z2+z3+z4)*z+4*z*z
+=d1+d2+d3+d4;
+
+solve([x1^2-x1*x+x^2+y1^2-y1*y+y^2+z1^2+z1*z+z^2=d1,x2^2-x2*x+x^2+y2^2-y2*y+y^2+z2^2+z2*z+z^2=d2,x3^2-x3*x+x^2+y3^2-y3*y+y^2+z3^2+z3*z+z^2=d3,x4^2-x4*x+x^2+y4^2-y4*y+y^2+z4^2+z4*z+z^2=d4],[x,y,z]);
+
+
+find_root([x1^2-x1*x+x^2+y1^2-y1*y+y^2+z1^2+z1*z+z^2=d1,x2^2-x2*x+x^2+y2^2-y2*y+y^2+z2^2+z2*z+z^2=d2,x3^2-x3*x+x^2+y3^2-y3*y+y^2+z3^2+z3*z+z^2=d3,x4^2-x4*x+x^2+y4^2-y4*y+y^2+z4^2+z4*z+z^2=d4],[x,y,z]);
+
+algsys([x1^2-x1*x+x^2+y1^2-y1*y+y^2+z1^2+z1*z+z^2=d1, x2^2-x2*x+x^2+y2^2-y2*y+y^2+z2^2+z2*z+z^2=d2, x3^2-x3*x+x^2+y3^2-y3*y+y^2+z3^2+z3*z+z^2=d3, x4^2-x4*x+x^2+y4^2-y4*y+y^2+z4^2+z4*z+z^2=d4], [x,y,z]);
+
+Minimize
+
+((x-x1)^2+(y-y1)^2+(z-z1)^2)/r1^2 + ((x-x2)^2+(y-y2)^2+(z-z2)^2)/r2^2+((x-x3)^2+(y-y3)^2+(z-z3)^2)/r3^2 + ((x-x4)^2+(y-y4)^2+(z-z4)^2)/r4^2
+
+simultaneously with respect to x,y,z. Assume no two spheres have identical center and radius.
+
+x = (r2^2*r3^2*r4^2*x1+r1^2*r3^2*r4^2*x2+r1^2*r2^2*r4^2*x3+r1^2*r2^2*r3^2*x4)/(r1^2*r2^2*r3^2+r1^2*r2^2*r4^2+r1^2*r3^2*r4^2+r2^2*r3^2*r4^2);
+y = (r2^2*r3^2*r4^2*y1+r1^2*r3^2*r4^2*y2+r1^2*r2^2*r4^2*y3+r1^2*r2^2*r3^2*y4)/(r1^2*r2^2*r3^2+r1^2*r2^2*r4^2+r1^2*r3^2*r4^2+r2^2*r3^2*r4^2);
+z = (r2^2*r3^2*r4^2*z1+r1^2*r3^2*r4^2*z2+r1^2*r2^2*r4^2*z3+r1^2*r2^2*r3^2*z4)/(r1^2*r2^2*r3^2+r1^2*r2^2*r4^2+r1^2*r3^2*r4^2+r2^2*r3^2*r4^2);
+
+Solution powered by Mathematica, all other errors are entirely my fault and I would appreciate them being pointed out to me.

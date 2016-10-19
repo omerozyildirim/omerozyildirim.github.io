@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>2D Indoor Navigation Simulator</title>
+		<meta content="">
+		<style></style>
+		<script language="javascript" type="text/javascript" src="classes2d.js"></script>
+	</head>
+	<body>
+		<table border=1>
+			<tr>
+				<td align=left valign=top>
+					<form id="form1">
+						<table border=1 id="apt">
+							<tr align="center"><th colspan=5>Access points</th></tr>
+							<tr align="center"><th>&nbsp</th><th>x</th><th>y</th><th>d</th><th><input type="button" id="rstap" value="Reset" onclick="reset_aps();"></th></tr>
+							<tr id="aptr1"><td id="apc1"><input type="text" id="apn1" size=1 disabled></td><td><input type="text" id="apx1" size=1 onchange="set_ap(1);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy1" size=1 onchange="set_ap(1);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd1" size=1 disabled></td><td><input type="button" id="set1" value="Set" onclick="set_clickfn(1);"></td></tr>
+							<tr id="aptr2"><td id="apc2"><input type="text" id="apn2" size=1 disabled></td><td><input type="text" id="apx2" size=1 onchange="set_ap(2);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy2" size=1 onchange="set_ap(2);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd2" size=1 disabled></td><td><input type="button" id="set2" value="Set" onclick="set_clickfn(2);"></td></tr>
+							<tr id="aptr3"><td id="apc3"><input type="text" id="apn3" size=1 disabled></td><td><input type="text" id="apx3" size=1 onchange="set_ap(3);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy3" size=1 onchange="set_ap(3);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd3" size=1 disabled></td><td><input type="button" id="set3" value="Set" onclick="set_clickfn(3);"></td></tr>
+							<tr id="aptr4"><td id="apc4"><input type="text" id="apn4" size=1 disabled></td><td><input type="text" id="apx4" size=1 onchange="set_ap(4);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy4" size=1 onchange="set_ap(4);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd4" size=1 disabled></td><td><input type="button" id="set4" value="Set" onclick="set_clickfn(4);"></td></tr>
+							<tr id="aptr5"><td id="apc5"><input type="text" id="apn5" size=1 disabled></td><td><input type="text" id="apx5" size=1 onchange="set_ap(5);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy5" size=1 onchange="set_ap(5);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd5" size=1 disabled></td><td><input type="button" id="set5" value="Set" onclick="set_clickfn(5);"></td></tr>
+							<tr id="aptr6"><td id="apc6"><input type="text" id="apn6" size=1 disabled></td><td><input type="text" id="apx6" size=1 onchange="set_ap(6);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy6" size=1 onchange="set_ap(6);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd6" size=1 disabled></td><td><input type="button" id="set6" value="Set" onclick="set_clickfn(6);"></td></tr>
+							<tr id="aptr7"><td id="apc7"><input type="text" id="apn7" size=1 disabled></td><td><input type="text" id="apx7" size=1 onchange="set_ap(7);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy7" size=1 onchange="set_ap(7);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd7" size=1 disabled></td><td><input type="button" id="set7" value="Set" onclick="set_clickfn(7);"></td></tr>
+							<tr id="aptr8"><td id="apc8"><input type="text" id="apn8" size=1 disabled></td><td><input type="text" id="apx8" size=1 onchange="set_ap(8);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy8" size=1 onchange="set_ap(8);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd8" size=1 disabled></td><td><input type="button" id="set8" value="Set" onclick="set_clickfn(8);"></td></tr>
+						</table>
+						<hr size=4>
+						<table border=1>
+							<tr align="center"><th colspan=6>Your position</th></tr>
+							<tr align="center"><th><input type="button" id="rwalk" value="Walk" onclick="rndwalk();"></th><th>x</th><th>y</th><th>error</th></tr>
+							<tr><td>Clicked</td><td><input type="text" id="ypx1" size=1 disabled></td><td><input type="text" id="ypy1" size=1 disabled></td><td>&nbsp;</td></tr>
+							<tr><td>Calculated</td><td><input type="text" id="ypx2" size=1 disabled></td><td><input type="text" id="ypy2" size=1 disabled></td><td><input type="text" id="ype2" size=1 disabled></td></tr>
+						</table>
+					</form>
+				</td>
+				<td align='center' valign='top'>
+					<svg id="graph" width="790" height="560" style="background: pink" onclick="set_cp(evt);">
+						<polygon id="area1" points="0,0 1,0 0,1"  stroke="blue" stroke-width="1" fill="cyan"/>
+						<text id="gap1" x="0" y="0" fill="black">1</text>
+						<text id="gap2" x="0" y="0" fill="black">2</text>
+						<text id="gap3" x="0" y="0" fill="black">3</text>
+						<text id="gap4" x="0" y="0" fill="black">4</text>
+						<text id="gap5" x="0" y="0" fill="black">5</text>
+						<text id="gap6" x="0" y="0" fill="black">6</text>
+						<text id="gap7" x="0" y="0" fill="black">7</text>
+						<text id="gap8" x="0" y="0" fill="black">8</text>
+						<!-- circle id="gcp3" cx="0" cy="0" r="9" stroke="black" stroke-width="1" fill="white"  /-->
+						<circle id="gcp2" cx="0" cy="0" r="6" stroke="black" stroke-width="1" fill="white"  />
+						<circle id="gcp1" cx="0" cy="0" r="3" stroke="black" stroke-width="1" fill="white"  />
+					</svg>
+				</td>
+			</tr>
+		</table>
+		<script language="javascript" type="text/javascript" src="main2d.js"></script>
+	</body>
+</html>

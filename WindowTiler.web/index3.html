@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<title>OmerO's Window Tiler</title>
+		<meta content="">
+		<style>
+			table, th, td {
+				border: 0;
+				border-collapse: collapse;
+			}
+			th, td {
+				padding: 0;
+			}
+		</style>
+		<script>
+			var sw = 1920, sh = 1200;
+			var tblw = 160, tblh = 100;
+			var rownum = 2, colnum = 2;
+			var tmar = 0, bmar = 0, lmar = 0, rmar = 0;
+			var wint = 0, winl = 0, winw = 0, winh = 0;
+			var adbs = 24;
+			function render_table(){
+				var bw = tblw / colnum;
+				var bh = tblh / rownum;
+				var i, j, tblbody = "";
+				tblbody += "<tr><td></td>";
+				tblbody += "<td bgcolor='#aaaaaa' colspan='" + colnum.toString() +"'>";
+				tblbody += "<img src='but.png' onclick='delrow()' ";
+				tblbody += "height='" + adbs.toString() + "' width='" + tblw.toString() + "' />";
+				tblbody +="</td><td></td>";
+				for (i = 0; i < rownum; i++){
+					tblbody += "<tr>";
+					for (j = 0; j < colnum; j++){
+						if ((i == 0) && (j == 0)){
+							tblbody += "<td bgcolor='#aaaaaa' rowspan='" + rownum.toString() +"'>";
+							tblbody += "<img src='but.png' onclick='delcol()' ";
+							tblbody += "width='" + adbs.toString() + "' height='" + tblh.toString() + "' />";
+							tblbody +="</td>";
+						}
+						tblbody += "<td bgcolor='#aaaaaa' onmouseover='setcolor(this)' onmouseout='clrcolor(this)'>";
+						tblbody += "<img src='but.png' onclick='setwindow(this)' ";
+						tblbody += "width='" + bw.toString() + "' height='" + bh.toString() + "' ";
+						tblbody += "id='" + i.toString() + "_" + j.toString() +"' />";
+						tblbody +="</td>";
+						if ((i == 0) && (j == (colnum - 1))){
+							tblbody += "<td bgcolor='#aaaaaa' rowspan='" + rownum.toString() +"'>";
+							tblbody += "<img src='but.png' onclick='addcol()' ";
+							tblbody += "width='" + adbs.toString() + "' height='" + tblh.toString() + "' />";
+							tblbody +="</td>";
+						}
+					}
+					tblbody += "</tr>";
+				}
+				tblbody += "<tr><td></td>";
+				tblbody += "<td bgcolor='#aaaaaa' colspan='" + colnum.toString() +"'>";
+				tblbody += "<img src='but.png' onclick='addrow()' ";
+				tblbody += "height='" + adbs.toString() + "' width='" + tblw.toString() + "' />";
+				tblbody +="</td><td></td>";
+				tilesbody.innerHTML = tblbody;
+			}
+			function setcolor(dummy){dummy.setAttribute("bgcolor", "turquise");}
+			function clrcolor(dummy){dummy.setAttribute("bgcolor", "#aaaaaa");}
+			function setwindow(dummy){
+				var bid = dummy.id.split("_");
+				winw = parseInt((sw - lmar - rmar) / colnum);
+				winh = parseInt((sh - tmar - bmar) / rownum);
+				winl = lmar + parseInt(bid[1]) * winw;
+				wint = tmar + parseInt(bid[0]) * winh;
+				statbar.innerHTML = "(" + winl + "," + wint + ")(" + winw + "," + winh + ")";
+			}
+			function addrow(){if (rownum < 3){rownum++; render_table()}}
+			function delrow(){if (rownum > 1){rownum--; render_table()}}
+			function addcol(){if (colnum < 4){colnum++; render_table()}}
+			function delcol(){if (colnum > 1){colnum--; render_table()}}
+		</script>
+	</head>
+	<body onload="render_table()">
+		<table border="0" id="tilesbody"></table>
+		<p id="statbar" />
+	</body>
+</html>
+<!--  style="width:480%; height:300%;" -->

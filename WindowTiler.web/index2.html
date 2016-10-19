@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>OmerO's Window Tiler</title>
+		<meta content="">
+		<style></style>
+		<script>
+			var sw = 1920, sh = 1200;
+			var rownum = 2, colnum = 2;
+			var tmar = 0, bmar = 0, lmar = 0, rmar = 0;
+			var wint = 0, winl = 0, winw = 0, winh = 0;
+			function render_table(){
+				var i, j, tblbody = "";
+				for (i = 0; i < rownum; i++){
+					tblbody += "<tr>";
+					for (j = 0; j < colnum; j++){
+						tblbody += "<td align='center'>";
+						tblbody += "<button id='btn_" + i.toString() + j.toString() +"' ";
+						tblbody += "type='button' onclick='setwindow(this)'>";
+						tblbody += i.toString() + "_" + j.toString();
+						tblbody += "</button>";
+						tblbody +="</td>";
+					}
+					tblbody += "</tr>";
+				}
+				tilesbody.innerHTML = tblbody;
+			}
+			function setwindow(dummy){
+				var bid = dummy.innerHTML.split("_");
+				winw = parseInt((sw - lmar - rmar) / colnum);
+				winh = parseInt((sh - tmar - bmar) / rownum);
+				winl = lmar + parseInt(bid[1]) * winw;
+				wint = tmar + parseInt(bid[0]) * winh;
+				statbar.innerHTML = "(" + winl + "," + wint + ")(" + winw + "," + winh + ")";
+			}
+			function addrow(){if (rownum < 3){rownum++; render_table()}}
+			function delrow(){if (rownum > 1){rownum--; render_table()}}
+			function addcol(){if (colnum < 4){colnum++; render_table()}}
+			function delcol(){if (colnum > 1){colnum--; render_table()}}
+		</script>
+	</head>
+	<body onload="render_table()">
+		<form>
+			<table border="0" id="tileshead">
+				<tr><td></td><td><button type="button" onclick="delcol()">-</button><button type="button" onclick="addcol()">+</button></td></tr>
+				<tr><td align="center" valign="top"><button type="button" onclick="delrow()">-</button><br><button type="button" onclick="addrow()">+</button></td><td valign="top"><table border="0" id="tilesbody" style="width:0%; height:0%;"></table></td></tr>
+			</table>
+		</form>
+		<p id="statbar" />
+	</body>
+</html>

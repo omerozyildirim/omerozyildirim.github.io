@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>Online PID Controller Simulation</title>
+		<meta content="">
+		<style></style>
+		<script language="javascript" type="text/javascript" src="main.js"></script>
+	</head>
+	<body>
+		<table border="1">
+			<tr>
+				<td><svg id="graph" width="640" height="180" style="background: pink"      onclick="set_cp(this, evt)"></svg></td>
+				<td rowspan="2">Buttons will be here</td>
+			</tr>
+			<tr>
+				<td><svg id="input" width="640" height="180" style="background: lightblue" onclick="set_cp(this, evt)"></svg></td>
+			</tr>
+		</table>
+		<h3>Online PID Controller Simulation</h3>
+		<p>Below is a brief description of the parameters:</p>
+		<h3>CSTR (Tank) Section</h3>
+		<p><b><i>Volume, Height:</i></b> These define the physical dimensions of the tank.</p>
+		<p><b><i>Inlet, Outlet:</i></b> These define the maximum capacity of the input and output of the tank.</p>
+		<p><b><i>Inlet%, Outlet%:</i></b> These represent the opening percentage of the input and output valves respectively. The actual input flowrate is calculated as:<br><br><i>input = inlet * inlet%</i><br><br>The output flowrate is calculated in the same manner.</p>
+		<p><b><i>Level%:</i></b> This represent the filled percentage of the tank.</p>
+		<p><b><i>K<sub>P</sub>, K<sub>I</sub>, K<sub>D</sub>:</i></b> These are the proportional, integral and derivative coefficients of the controller. You can activate each mode with the checkboxes.</p>
+		<p><b><i>Process variable:</i></b> This is the variable that will be controlled, meaning, it will be tried to keep as close as to the setpoint value.</p>
+		<p><b><i>Command variable:</i></b> This is the variable that will be altered to keep the process variable controlled.</p>
+		<p><b><i>Setpoint:</i></b> This is the value the process variable will be kept as close to as possible.</p>
+		<p><b><i>Delay:</i></b> With this parameter you may delay the appliance of the setpoint value.</p>
+		<p><b><i>Run time:</i></b> This is the total running time of the simulation.</p>
+		<p><b><i>Time step:</i></b> The default time step value for the simulation is<br><br><i>(Run time) / 10000 sec.</i><br><br>If you want to enter a different value, click the checkbox and enter your own.</p>
+		<p><a href="tank.html">Click here for the simulation page.</a></p>
+	</body>
+</html>

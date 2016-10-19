@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Roadster Visualization</title>
+		<script src="main.js"></script>
+		<!--script src="xmlsax.js"></script>
+		<script src="scripts.js"></script-->
+	</head>
+	<body>
+		<!--h3>ROADSTER VISUALIZATION</H3-->
+		<table border="1">
+			<tr><td><input type="file" id="infile" onchange="start_importer(this); //parsefile(this, parsed);" />Select road:<select id="roadsel"></select></td></tr>
+			<tr><td><svg width="512" height="512" id="map">Your browser does not support SVG tag.</svg></td></tr>
+			<tr><td>Box: (x1, y1)-(x2, y2)</td></tr>
+			<tr><td><output id="parsed"></output></td></tr>
+			<tr><td><output id="raw"></output></td></tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSTR Level Control Simulator v1.0</title>
+	<meta content="">
+	<style>
+		td.padded{padding: 0px;}
+		table{border: 0px outset;}
+		td, th{border: 0px inset;}
+		table.main{border: 1px outset;}
+		td.main, th.main{border: 1px inset;}
+	</style>
+	<!--[if IE]><script language="javascript" type="text/javascript" src="path/to/excanvas.js"></script><![endif]-->
+	<script language="javascript" type="text/javascript" src="prototype/prototype.js"></script>
+	<script language="javascript" type="text/javascript" src="flotr/canvas2image.js" ></script>
+	<script language="javascript" type="text/javascript" src="flotr/canvastext.js"   ></script>
+	<script language="javascript" type="text/javascript" src="flotr/flotr.js"        ></script>
+	<script language="javascript" type="text/javascript" src="tank.js"               ></script>
+	<script language="javascript" type="text/javascript" src="controller.js"         ></script>
+	<script language="javascript" type="text/javascript" src="main.js"               ></script>
+	<script language="javascript" type="text/javascript" src="utils.js"              ></script>
+</head>
+<body>
+	<center>
+	<b>CSTR Level Control Simulator</b>
+	<table class="main">
+		<!--tr><th class="main" colspan="3" align=center>CSTR Level Control Simulator</th></tr-->
+		<tr>
+			<td class="main" align=left valign=top><form name="form1">
+				<table name="mntbl">
+					<tr><th colspan="3">Tank</th></tr>
+					<tr><td>Volume</td><td align='right' bgcolor='red'><input type="text" name="volume" size=3 onkeyup="numberize(this);"></td><td><i>m³</i>  </td></tr>
+					<tr><td>Height</td><td align='right' bgcolor='red'><input type="text" name="height" size=3 onkeyup="numberize(this);"></td><td><i>m</i>   </td></tr>
+					<tr><td>Inlet </td><td align='right' bgcolor='red'><input type="text" name="inlet"  size=3 onkeyup="numberize(this);"></td><td><i>m³/s</i></td></tr>
+					<tr><td>Outlet</td><td align='right' bgcolor='red'><input type="text" name="outlet" size=3 onkeyup="numberize(this);"></td><td><i>m³/s</i></td></tr>
+					<tr><th colspan="3"><br>Initial values</th></tr>
+					<tr><td>Level% </td><td align='right' bgcolor='red'><input type="text" name="levelpc"  size=3 onkeyup="numberize(this);"></td><td>%</td></tr>
+					<tr><td>Inlet% </td><td align='right' bgcolor='red'><input type="text" name="inletpc"  size=3 onkeyup="numberize(this);"></td><td>%</td></tr>
+					<tr><td>Outlet%</td><td align='right' bgcolor='red'><input type="text" name="outletpc" size=3 onkeyup="numberize(this);"></td><td>%</td></tr>
+					<tr><th colspan="3"><br>Controller</th></tr>
+					<tr><td><input type="checkbox" name="proportional">K<sub>P</sub></td><td align='right' bgcolor='yellow'><input type="text" name="kp" size=3 onkeyup="numberize(this);"></td><td>&nbsp;</td></tr>
+					<tr><td><input type="checkbox" name="integral"    >K<sub>I</sub></td><td align='right' bgcolor='yellow'><input type="text" name="ki" size=3 onkeyup="numberize(this);"></td><td>&nbsp;</td></tr>
+					<tr><td><input type="checkbox" name="derivative"  >K<sub>D</sub></td><td align='right' bgcolor='yellow'><input type="text" name="kd" size=3 onkeyup="numberize(this);"></td><td>&nbsp;</td></tr>
+					<tr><th colspan="3"><br>Time</th></tr>
+					<tr><td>Duration</td><td align='right' bgcolor='red'><input type="text" name="runtime" size=3 onkeyup="numberize(this);"></td><td><i>s</i></td></tr>
+					<tr><td><input type="checkbox" name="mandt" onclick="cbmandt();">Step</td><td align='right'><input type="text" name="timestep" size=3 onkeyup="numberize(this);" disabled></td><td><i>s</i></td></tr>
+					<tr><th colspan="3"><br>Simulation Results</th></tr>
+					<tr><td>t<sub>steady</sub></td><td align='right'><input type="text" name="tstd" size=3 readonly></td><td><i>s</i></td></tr>
+					<tr><td>Offset            </td><td align='right'><input type="text" name="estd" size=3 readonly></td><td>%       </td></tr>
+					<tr><td colspan="3" align='center'><br><button type="button" name="action" onclick="run();">Run the simulation</button></td></tr>
+				</table>
+			</form></td>
+			<td class="main" align='center' valign='top'>
+				<table>
+					<tr><td><div id="graph1" style="width: 600px; height: 300px;"></div></td></tr>
+					<tr><td><div id="graph2" style="width: 600px; height: 300px;"></div></td></tr>
+				</table>
+			</td>
+			<td class="main" align='left' valign=top><form name="form2">
+				<table name="sptbl">
+					<tr><th colspan="3" align='center'>Setpoint variance</th><th colspan="2" align='center'>Overshoot analysis</th></tr>
+					<tr><td align='center'>Delay (<i>s</i>)</td><td align='center'>Value (%)</td><td align='center'>Ramp</td><td align='center'>t<sub>overshoot</sub></td><td align='center'>Overshoot%</td></tr>
+					<tr><td align='right'><input type="text" name="spdelay1" size=5 onkeyup="numberize(this);"></td><td align='right'><input type="text" name="spvalue1" size=5 onkeyup="numberize(this);"></td><td align='center'><input type="checkbox" name="spramp1" value="true"></td><td align='right'><input type="text" name="tosho1" size=5 readonly><td align='left'><input type="text" name="osho1" size=5  readonly></tr>
+					<tr><td align='right'><input type="text" name="spdelay2" size=5 onkeyup="numberize(this);"></td><td align='right'><input type="text" name="spvalue2" size=5 onkeyup="numberize(this);"></td><td align='center'><input type="checkbox" name="spramp2" value="true"></td><td align='right'><input type="text" name="tosho2" size=5 readonly><td align='left'><input type="text" name="osho2"  size=5 readonly></tr>
+					<tr><td align='right'><input type="text" name="spdelay3" size=5 onkeyup="numberize(this);"></td><td align='right'><input type="text" name="spvalue3" size=5 onkeyup="numberize(this);"></td><td align='center'><input type="checkbox" name="spramp3" value="true"></td><td align='right'><input type="text" name="tosho3" size=5 readonly><td align='left'><input type="text" name="osho3"  size=5 readonly></tr>
+					<tr><td align='right'><input type="text" name="spdelay4" size=5 onkeyup="numberize(this);"></td><td align='right'><input type="text" name="spvalue4" size=5 onkeyup="numberize(this);"></td><td align='center'><input type="checkbox" name="spramp4" value="true"></td><td align='right'><input type="text" name="tosho4" size=5 readonly><td align='left'><input type="text" name="osho4"  size=5 readonly></tr>
+					<tr><td align='right'><input type="text" name="spdelay5" size=5 onkeyup="numberize(this);"></td><td align='right'><input type="text" name="spvalue5" size=5 onkeyup="numberize(this);"></td><td align='center'><input type="checkbox" name="spramp5" value="true"></td><td align='right'><input type="text" name="tosho5" size=5 readonly><td align='left'><input type="text" name="osho5"  size=5 readonly></tr>
+				</table></form>
+				<br><form name="form3">
+				<table name="dbtbl">
+					<tr><th colspan="3" align='center'>Disturbance variance</th><th colspan="3" align='center'>Message output</th></tr>
+					<tr><td align='center'>Delay (<i>s</i>)</td><td align='center'>Value (%)</td><td align='center'>Ramp</td><td rowspan=6><textarea name="stdout" cols='32' rows='10' readonly></textarea></td></tr>
+					<tr><td align='right'><input type="text" name="dbdelay1" size=5 onkeyup="numberize(this);"></td><td align='right'><input type="text" name="dbvalue1" size=5 onkeyup="numberize(this);"></td><td align='center'><input type="checkbox" name="dbramp1" value="true"></td></tr>
+					<tr><td align='right'><input type="text" name="dbdelay2" size=5 onkeyup="numberize(this);"></td><td align='right'><input type="text" name="dbvalue2" size=5 onkeyup="numberize(this);"></td><td align='center'><input type="checkbox" name="dbramp2" value="true"></td></tr>
+					<tr><td align='right'><input type="text" name="dbdelay3" size=5 onkeyup="numberize(this);"></td><td align='right'><input type="text" name="dbvalue3" size=5 onkeyup="numberize(this);"></td><td align='center'><input type="checkbox" name="dbramp3" value="true"></td></tr>
+					<tr><td align='right'><input type="text" name="dbdelay4" size=5 onkeyup="numberize(this);"></td><td align='right'><input type="text" name="dbvalue4" size=5 onkeyup="numberize(this);"></td><td align='center'><input type="checkbox" name="dbramp4" value="true"></td></tr>
+					<tr><td align='right'><input type="text" name="dbdelay5" size=5 onkeyup="numberize(this);"></td><td align='right'><input type="text" name="dbvalue5" size=5 onkeyup="numberize(this);"></td><td align='center'><input type="checkbox" name="dbramp5" value="true"></td></tr>
+				</table></form>
+				<br><form name="form4">
+				<table width=100%>
+					<tr><th>Plots</th><th>1<input type="checkbox" name="plup">%</th><th>2<input type="checkbox" name="pllp">%</th></tr>
+					<tr><td>Level (Process variable)   </td><td align='center'><input type="checkbox" name="plul"></td><td align='center'><input type="checkbox" name="plll"></td></tr>
+					<tr><td>Input (Controlled variable)</td><td align='center'><input type="checkbox" name="plui"></td><td align='center'><input type="checkbox" name="plli"></td></tr>
+					<tr><td>Output (Disturbance)       </td><td align='center'><input type="checkbox" name="pluo"></td><td align='center'><input type="checkbox" name="pllo"></td></tr>
+					<tr><td>Set point                  </td><td align='center'><input type="checkbox" name="plus"></td><td align='center'><input type="checkbox" name="plls"></td></tr>
+					<tr><td>Controller error           </td><td align='center'><input type="checkbox" name="plue"></td><td align='center'><input type="checkbox" name="plle"></td></tr>
+				</table></form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

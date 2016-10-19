@@ -1,0 +1,16 @@
+<html>
+<head>
+<script language="javascript" type="text/javascript" src="main.js"></script>
+</head>
+<body>
+<p>This page demonstrates how to access files.</p>
+<table border="1">
+<tr><th>Local file</th><th>http request</th></tr>
+<tr>
+<td><input type="file" id="infile" onchange="displayfile()" /></td>
+<td><input type="text" id="httpadr" /><button type="button" onclick="loadXMLDoc()">Retreive</button></td>
+</tr>
+<tr><td><code><output id="fileout"></output></code></td><td><output id="httpout"></output></td></tr>
+</table>
+</body>
+</html>

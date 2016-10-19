@@ -1,0 +1,161 @@
+<html>
+<head>
+<title>Towhee Input GUI v1.0</title>
+<script language="javascript" type="text/javascript" src="data3.js"></script>
+<script language="javascript" type="text/javascript" src="main2.js"></script>
+</head>
+<body onload="fillLists(); evaluateAbilities();">
+<form id="main_form">
+<table border=1><tr><td valign=top align=right>
+<table border=1>
+<tr><th colspan=2>Random number</th></tr>
+<tr><td>inputformat            </td><td><input type="text" value="Towhee" readonly     id="inputformat"             ></td></tr>
+<tr><td>random_number_generator</td><td><select onChange="cbselect(this);"             id="random_number_generator"/></td></tr>
+<tr><td>random_luxlevel        </td><td><select onChange="cbselect(this);"             id="random_luxlevel"        /></td></tr>
+<tr><td>random_seed            </td><td><input type="text" onkeyup="integerize(this);" id="random_seed"             ></td></tr>
+<tr><td>random_allow_restart   </td><td><input type="radio" id="random_allow_restart" value="true">true&nbsp;<input type="radio" id="random_allow_restart" value="false">false</td></tr>
+</table>
+<table border=1>
+<tr><th colspan=2>Ensemble</th></tr>
+<tr><td>ensemble       </td><td><select onChange="cbselect(this);"             id="ensemble"     /></td></tr>
+<tr><td>pressure (kPa) </td><td><input type="text" onkeyup="floatize(this);"   id="pressure"      ></td></tr>
+<tr><td>chempot        </td><td><input type="text" onkeyup="floatize(this);"   id="chempot"       ></td></tr>
+<tr><td>tmmc_flag      </td><td><input type="radio" name="tmmc_flag" id="tmmc_flag_t" value="true">true&nbsp;<input type="radio" name="tmmc_flag" id="tmmc_flag_f" value="false">false</td></tr>
+<tr><td>louthist       </td><td><input type="radio" name="louthist" id="louthist_t" value="true">true&nbsp;<input type="radio" name="louthist" id="louthist_f" value="false">false</td></tr>
+<tr><td>hist_label     </td><td><input type="text" onkeyup="integerize(this);" id="hist_label"    ></td></tr>
+<tr><td>hist_suffix    </td><td><input type="text"                             id="hist_suffix"   ></td></tr>
+<tr><td>hist_nequii    </td><td><input type="text" onkeyup="integerize(this);" id="hist_nequii"   ></td></tr>
+<tr><td>histcalcfreq   </td><td><input type="text" onkeyup="integerize(this);" id="histcalcfreq"  ></td></tr>
+<tr><td>histdumpfreq   </td><td><input type="text" onkeyup="integerize(this);" id="histdumpfreq"  ></td></tr>
+<tr><td>temperature (K)</td><td><input type="text" onkeyup="floatize(this);"   id="temperature"   ></td></tr>
+<tr><td>chempotperstep </td><td><input type="text" onkeyup="integerize(this);" id="chempotperstep"></td></tr>
+</table>
+<table border=1>
+<tr><th colspan=2>Simulation</th></tr>
+<tr><td>nmolty         </td><td><input type="text" readonly                    id="nmolty"          ></td></tr>
+<tr><td>nmolectyp      </td><td><textarea cols=23 rows=1 readonly              id="nmolectyp"       ></textarea></td></tr>
+<tr><td>numboxes       </td><td><input type="text" readonly                    id="numboxes"        ></td></tr>
+<tr><td>stepstyle      </td><td><select onChange="cbselect(this);"             id="stepstyle"      /></td></tr>
+<tr><td>nstep          </td><td><input type="text" onkeyup="integerize(this);" id="nstep"           ></td></tr>
+<tr><td>controlstyle   </td><td><select onChange="cbselect(this);"             id="controlstyle"   /></td></tr>
+<tr><td>printfreq      </td><td><input type="text" onkeyup="integerize(this);" id="printfreq"       ></td></tr>
+<tr><td>blocksize      </td><td><input type="text" onkeyup="integerize(this);" id="blocksize"       ></td></tr>
+<tr><td>moviefreq      </td><td><input type="text" onkeyup="integerize(this);" id="moviefreq"       ></td></tr>
+<tr><td>backupfreq     </td><td><input type="text" onkeyup="integerize(this);" id="backupfreq"      ></td></tr>
+<tr><td>restartfreq    </td><td><input type="text" onkeyup="integerize(this);" id="restartfreq"     ></td></tr>
+<tr><td>runoutput      </td><td><select onChange="cbselect(this);"             id="runoutput"      /></td></tr>
+<tr><td>pdb_output_freq</td><td><input type="text" onkeyup="integerize(this);" id="pdb_output_freq" ></td></tr>
+<tr><td>pressurefreq   </td><td><input type="text" onkeyup="integerize(this);" id="pressurefreq"    ></td></tr>
+<tr><td>trmaxdispfreq  </td><td><input type="text" onkeyup="integerize(this);" id="trmaxdispfreq"   ></td></tr>
+<tr><td>volmaxdispfreq </td><td><input type="text" onkeyup="integerize(this);" id="volmaxdispfreq"  ></td></tr>
+<tr><td>loutdft        </td><td><input type="radio" value="true" name="loutdft"    id="loutdft_t"   >true&nbsp;<input type="radio" value="false" name="loutdft"    id="loutdft_f"   >false</td></tr>
+<tr><td>loutlammps     </td><td><input type="radio" value="true" name="loutlammps" id="loutlammps_t">true&nbsp;<input type="radio" value="false" name="loutlammps" id="loutlammps_f">false</td></tr>
+<tr><td>loutdlpoly     </td><td><input type="radio" value="true" name="loutdlpoly" id="loutdlpoly_t">true&nbsp;<input type="radio" value="false" name="loutdlpoly" id="loutdlpoly_f">false</td></tr>
+<tr><td>linit          </td><td><input type="radio" value="true" name="linit"      id="linit_t"     >true&nbsp;<input type="radio" value="false" name="linit"      id="linit_f"     >false</td></tr>
+</table>
+</td><td valign=top align=right>
+<table border=1>
+<tr><th colspan=2>Potential</th></tr>
+<tr><td>potentialstyle         </td><td><select onChange="cbselect(this);"             id="potentialstyle"        /></td></tr>
+<tr><td>classical_potential    </td><td><select onChange="cbselect(this);"             id="classical_potential"   /></td></tr>
+<tr><td>classical_mixrule      </td><td><select onChange="cbselect(this);"             id="classical_mixrule"     /></td></tr>
+<tr><td>lshift                 </td><td><input type="radio" name="lshift" id="lshift_t" value="true">true&nbsp;<input type="radio" name="lshift" id="lshift_f" value="false">false</td></tr>
+<tr><td>ltailc                 </td><td><input type="radio" name="ltailc" id="ltailc_t" value="true">true&nbsp;<input type="radio" name="ltailc" id="ltailc_f" value="false">false</td></tr>
+<tr><td>rmin                   </td><td><input type="text" onkeyup="floatize(this);"   id="rmin"                   ></td></tr>
+<tr><td>rcut                   </td><td><input type="text" onkeyup="floatize(this);"   id="rcut"                   ></td></tr>
+<tr><td>rcutin                 </td><td><input type="text" onkeyup="floatize(this);"   id="rcutin"                 ></td></tr>
+<tr><td>interpolatestyle       </td><td><select onChange="cbselect(this);"             id="interpolatestyle"      /></td></tr>
+<tr><td>radial_pressure_delta  </td><td><input type="text" onkeyup="floatize(this);"   id="radial_pressure_delta"  ></td></tr>
+<tr><td>mixrule_adjust_total   </td><td><input type="text" readonly                    id="mixrule_adjust_total"   ></td></tr>
+<tr><td>mixrule_adjust_key     </td><td><textarea cols=23 rows=1                       id="mixrule_adjust_key"     ></textarea></td></tr>
+<tr><td>mixrule_adjust_keynames</td><td><textarea cols=23 rows=1                       id="mixrule_adjust_keynames"></textarea></td></tr>
+<tr><td>mixrule_adjustments    </td><td><textarea cols=23 rows=1                       id="mixrule_adjustments"    ></textarea></td></tr>
+<tr><td>cmix_rescaling_style   </td><td><select onChange="cbselect(this);"             id="cmix_rescaling_style"  /></td></tr>
+<tr><td>cmix_lambda_lj         </td><td><input type="text" onkeyup="floatize(this);"   id="cmix_lambda_lj"         ></td></tr>
+<tr><td>cmix_alpha_lj          </td><td><input type="text" onkeyup="floatize(this);"   id="cmix_alpha_lj"          ></td></tr>
+<tr><td>cmix_lambda_c          </td><td><input type="text" onkeyup="floatize(this);"   id="cmix_lambda_c"          ></td></tr>
+<tr><td>cmix_lprintdudl        </td><td><input type="radio" name="cmix_lprintdudl" id="cmix_lprintdudl_t" value="true">true&nbsp;<input type="radio" name="cmix_lprintdudl" id="cmix_lprintdudl_f" value="false">false</td></tr>
+<tr><td>cmix_npair             </td><td><input type="text" readonly                    id="cmix_npair"             ></td></tr>
+<tr><td>cmix_pair_list         </td><td><textarea cols=23 rows=1                       id="cmix_pair_list"         ></textarea></td></tr>
+<tr><td>electrostatic_form     </td><td><select onChange="cbselect(this);"             id="electrostatic_form"    /></td></tr>
+<tr><td>coulombstyle           </td><td><select onChange="cbselect(this);"             id="coulombstyle"          /></td></tr>
+<tr><td>kalp                   </td><td><input type="text" onkeyup="floatize(this);"   id="kalp"                   ></td></tr>
+<tr><td>kmax                   </td><td><input type="text" onkeyup="integerize(this);" id="kmax"                   ></td></tr>
+<tr><td>dielect                </td><td><input type="text" onkeyup="floatize(this);"   id="dielect"                ></td></tr>
+<tr><td>ewald_prec             </td><td><input type="text" onkeyup="floatize(this);"   id="ewald_prec"             ></td></tr>
+<tr><td>rcelect                </td><td><input type="text" onkeyup="floatize(this);"   id="rcelect"                ></td></tr>
+<tr><td>max_bond_length        </td><td><input type="text" onkeyup="floatize(this);"   id="max_bond_length"        ></td></tr>
+<tr><td>external_code          </td><td><input type="text" value="lcao" readonly       id="external_code"          ></td></tr>
+<tr><td>lcao_functional        </td><td><input type="text" value="LDA" readonly        id="lcao_functional"        ></td></tr>
+<tr><td>lcao_atomtypes         </td><td><input type="text" onkeyup="integerize(this);" id="lcao_atomtypes"         ></td></tr>
+<tr><td>lcao_filename          </td><td><textarea cols=23 rows=1                       id="lcao_filename"          ></textarea></td></tr>
+<tr><td>lcao_gridmultiplier    </td><td><input type="text" onkeyup="floatize(this);"   id="lcao_gridmultiplier"    ></td></tr>
+<tr><td>lcao_kgridproduct      </td><td><input type="text" onkeyup="floatize(this);"   id="lcao_kgridproduct"      ></td></tr>
+</table>
+<table border=1>
+<tr><th colspan=2>Solvation</th></tr>
+<tr><td>solvation_style      </td><td><select onChange="cbselect(this);"             id="solvation_style"     /></td></tr>
+<tr><td>solvation_type       </td><td><input type="text" readonly                    id="solvation_type"       ></td></tr>
+</table>
+</td>
+<td colspan=2 valign=top>
+<table border=1>
+<tr><th colspan=2>CBMC</th></tr>
+<tr><td>cbmc_formulation  </td><td><select onChange="cbselect(this);" id="cbmc_formulation"  /></td></tr>
+<tr><td>cbmc_setting_style</td><td><select onChange="cbselect(this);" id="cbmc_setting_style"/></td></tr>
+</table>
+<table id="helix" border=1>
+<tr><th colspan=2>helix</th></tr>
+<tr><td>helix_moltyp </td><td><input type="text" readonly                  id="helix_moltyp"  ></td></tr>
+<tr><td>helix_radius </td><td><input type="text" onkeyup="floatize(this);" id="helix_radius"  ></td></tr>
+<tr><td>helix_angle  </td><td><input type="text" onkeyup="floatize(this);" id="helix_angle"   ></td></tr>
+<tr><td>helix_keytype</td><td><select onChange="cbselect(this);"           id="helix_keytype"/></td></tr>
+<tr><td>helix_keyname</td><td><input type="text"                           id="helix_keyname" ></td></tr>
+<tr><td>helix_conlen </td><td><input type="text" onkeyup="floatize(this);" id="helix_conlen"  ></td></tr>
+<tr><td>helix_phase  </td><td><input type="text" onkeyup="floatize(this);" id="helix_phase"   ></td></tr>
+</table>
+</td></tr></table>
+<br>
+<br>
+<table id="boxes" border=1>
+<tr><th>Box</th><th colspan=4>Box parameters</th><th>Molecules:</th><th>1</th><td><button type="button" id="add_molecule" onclick="add_molecule();">Add molecule</button></td></tr>
+<tr><th>#</th><td align=center>initboxtype</td><td align=center>box_number_density</td><td align=center>hmatrix</td><td align=center>inix iniy iniz</td><td>ff_name</td><td><select id="forcefield" onChange="cbselect(this);"/></td></tr>
+<tr><th>1</th><td><select id="initboxtype" onChange="cbselect(this);"/></td><td><input type="text" id="box_number_density" onkeyup="floatize(this);"></td><td><input type="text" id="hmatrix0" size=4 onkeyup="floatize(this);"><input type="text" id="hmatrix1" size=4 onkeyup="floatize(this);"><input type="text" id="hmatrix2" size=4 onkeyup="floatize(this);"></td><td align=center><input type="text" id="inix" size=4 onkeyup="integerize(this);"></td><td>initstyle</td><td><select id="initstyle" onChange="cbselect(this);"/></td></tr>
+<tr><td><button type="button" id="delete_box0" onclick="delete_box(0);">Delete</button></td><td>&nbsp;</td><td>&nbsp;</td><td><input type="text" id="hmatrix3" size=4 onkeyup="floatize(this);"><input type="text" id="hmatrix4" size=4 onkeyup="floatize(this);"><input type="text" id="hmatrix5" size=4 onkeyup="floatize(this);"></td><td align=center><input type="text" id="iniy" size=4 onkeyup="integerize(this);"></td><td>initlattice</td><td><select id="initlattice" onChange="cbselect(this);"/></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td><input type="text" id="hmatrix6" size=4 onkeyup="floatize(this);"><input type="text" id="hmatrix7" size=4 onkeyup="floatize(this);"><input type="text" id="hmatrix8" size=4 onkeyup="floatize(this);"></td><td align=center><input type="text" id="iniz" size=4 onkeyup="integerize(this);"></td><td>initmol</td><td><input type="text" id="initmol" size=7 onkeyup="integerize(this);"></td></tr>
+<tr><td colspan=5 align=center><button type="button" id="add_box" onclick="add_box();">Add box</button></td><td>&nbsp;</td><td align=center><button type="button" id="delete_molecule0" onclick="delete_molecule(0);">Delete</button></td></tr>
+</table>
+<br>
+<table id="moves" border=1>
+<tr><th>Moves</th><th>Probability</th><th>Additional parameters</th></tr>
+<tr><td><input type="checkbox" name="moves" value="pmvol"          >pmvol          </td><td><input type="text" onkeyup="floatize(this);" id="pmvol"          ></td><td>pmvlpr<br>rmvol<br>tavol</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmcell"         >pmcell         </td><td><input type="text" onkeyup="floatize(this);" id="pmcell"         ></td><td>pmcellpr<br>pmcellpt<br>rmcell<br>tacell</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pm2boxrbswap"   >pm2boxrbswap   </td><td><input type="text" onkeyup="floatize(this);" id="pm2boxrbswap"   ></td><td>pm2rbswmt<br>pm2rbswpr</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pm2boxcbswap"   >pm2boxcbswap   </td><td><input type="text" onkeyup="floatize(this);" id="pm2boxcbswap"   ></td><td>pm2cbswmt<br>pm2cbswpr</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmuvtcbswap"    >pmuvtcbswap    </td><td><input type="text" onkeyup="floatize(this);" id="pmuvtcbswap"    ></td><td>pmuvtcbmt</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pm1boxcbswap"   >pm1boxcbswap   </td><td><input type="text" onkeyup="floatize(this);" id="pm1boxcbswap"   ></td><td>pm1cbswmt</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pm1boxcomswitch">pm1boxcomswitch</td><td><input type="text" onkeyup="floatize(this);" id="pm1boxcomswitch"></td><td>pm1comswbox<br>pm1comswpair</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmavb1"         >pmavb1         </td><td><input type="text" onkeyup="floatize(this);" id="pmavb1"         ></td><td>pmavb1in<br>pmavb1mt<br>pmavb1ct<br>avb1rad</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmavb2"         >pmavb2         </td><td><input type="text" onkeyup="floatize(this);" id="pmavb2"         ></td><td>pmavb2in<br>pmavb2mt<br>pmavb2ct<br>avb2rad</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmavb3"         >pmavb3         </td><td><input type="text" onkeyup="floatize(this);" id="pmavb3"         ></td><td>pmavb3mt<br>pmavb3ct<br>avb3rad</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmcb"           >pmcb           </td><td><input type="text" onkeyup="floatize(this);" id="pmcb"           ></td><td>pmcbmt<br>pmall</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmback"         >pmback         </td><td><input type="text" onkeyup="floatize(this);" id="pmback"         ></td><td>pmbkmt</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmcbside"       >pmcbside       </td><td><input type="text" onkeyup="floatize(this);" id="pmcbside"       ></td><td>pmcbsidemt</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmpivot"        >pmpivot        </td><td><input type="text" onkeyup="floatize(this);" id="pmpivot"        ></td><td>pmpivmt</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmconrot"       >pmconrot       </td><td><input type="text" onkeyup="floatize(this);" id="pmconrot"       ></td><td>pmcrmt</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmcrback"       >pmcrback       </td><td><input type="text" onkeyup="floatize(this);" id="pmcrback"       ></td><td>pmcrbmt</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmplane"        >pmplane        </td><td><input type="text" onkeyup="floatize(this);" id="pmplane"        ></td><td>pmplanebox<br>planewidth</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmrow"          >pmrow          </td><td><input type="text" onkeyup="floatize(this);" id="pmrow"          ></td><td>pmrowbox<br>rowwidth</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmtraat"        >pmtraat        </td><td><input type="text" onkeyup="floatize(this);" id="pmtraat"        ></td><td>pmtamt<br>rmtraa<br>tatraa</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmcomposite"    >pmcomposite    </td><td><input type="text" onkeyup="floatize(this);" id="pmcomposite"    ></td><td>pmcomt<br>rmcomtra<br>rmcomrot</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmtracm"        >pmtracm        </td><td><input type="text" onkeyup="floatize(this);" id="pmtracm"        ></td><td>pmtcmt<br>rmtrac<br>tatrac</td></tr>
+<tr><td><input type="checkbox" name="moves" value="pmrotate"       >pmrotate       </td><td><input type="text" onkeyup="floatize(this);" id="pmrotate"       ></td><td>pmromt<br>rmrot<br>tarot</td></tr>
+</table>
+</form>
+<hr>
+<h3>Towhee Input GUI</h3>
+<p>This is a simple GUI attempt for the software package MCCCS Towhee. The main aim is to ease the parameter writing process by taking the burden of having to remember to include each and every parameter and manually ordering them in the input file off the users' shoulders. Of course, by philosophy a real GUI should free the user from typing in numbers and visualize the information in a fancy and perceptive way and I know this is nothing even near to that. I've tried to cover the all the parameter types as I could except for the fields section and the molecule definitions. They should be included manually to the generated <code>towhee_input</code> file. Any criticisms about the design or any information about the errors are welcome.</p>
+<h3>Usage</h3>
+<p></p>
+</body>
+</html>

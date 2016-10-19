@@ -1,0 +1,12 @@
+{
+	"name": "TowheeAFFS",
+	"main": "index.html",
+	"window": {
+		"title": "MCCCS Towhee Advanced Forcefield Selector",
+		"width": 640,
+		"height": 400,
+		"min_width": 640,
+		"min_height": 400,
+		"plugin": false
+	}
+}

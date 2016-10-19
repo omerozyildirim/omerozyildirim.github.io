@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style></style>
+  </head>
+  <body>
+  <script language="javascript" type="text/javascript">
+  // Check for the various File API support.
+if (window.File && window.FileReader && window.FileList && window.Blob) {
+  alert('The File APIs are fully supported!');
+} else {
+  alert('The File APIs are not fully supported in this browser.');
+}
+  </script>
+  <script language="javascript" type="text/javascript" src="savefile.js"></script>
+<form>
+<input type="button" value="save" onclick="save_content_to_file('deneme','/home/omero/deneme.txt');">
+  </form>
+  </body>
+</html>

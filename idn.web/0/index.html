@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Calibration</title>
+		<meta content="">
+		<style></style>
+		<script language="javascript" type="text/javascript" src="classes.js"></script>
+	</head>
+	<body>
+		<table border=1>
+			<tr>
+				<td align=left valign=top>
+					<form id="form1">
+						<table border=1 id="apt">
+							<tr align="center"><th colspan=6>Access points</th></tr>
+							<tr align="center"><th><input type="button" id="rstap" value="Reset" onclick="reset_aps();"></th><th>x</th><th>y</th><th>z</th><th>d</th><th><input type="button" id="rnd0" value="All" onclick="rndall();"></th></tr>
+							<tr id="aptr1"><td id="apc1"><input type="text" id="apn1" size=1 disabled></td><td><input type="text" id="apx1" size=1 onchange="set_ap(1);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy1" size=1 onchange="set_ap(1);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apz1" size=1 onchange="set_ap(1);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd1" size=1 disabled></td><td><input type="button" id="rnd1" value="Rand" onclick="rndone(1);"></td></tr>
+							<tr id="aptr2"><td id="apc2"><input type="text" id="apn2" size=1 disabled></td><td><input type="text" id="apx2" size=1 onchange="set_ap(2);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy2" size=1 onchange="set_ap(2);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apz2" size=1 onchange="set_ap(2);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd2" size=1 disabled></td><td><input type="button" id="rnd2" value="Rand" onclick="rndone(2);"></td></tr>
+							<tr id="aptr3"><td id="apc3"><input type="text" id="apn3" size=1 disabled></td><td><input type="text" id="apx3" size=1 onchange="set_ap(3);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy3" size=1 onchange="set_ap(3);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apz3" size=1 onchange="set_ap(3);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd3" size=1 disabled></td><td><input type="button" id="rnd3" value="Rand" onclick="rndone(3);"></td></tr>
+							<tr id="aptr4"><td id="apc4"><input type="text" id="apn4" size=1 disabled></td><td><input type="text" id="apx4" size=1 onchange="set_ap(4);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy4" size=1 onchange="set_ap(4);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apz4" size=1 onchange="set_ap(4);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd4" size=1 disabled></td><td><input type="button" id="rnd4" value="Rand" onclick="rndone(4);"></td></tr>
+							<tr id="aptr5"><td id="apc5"><input type="text" id="apn5" size=1 disabled></td><td><input type="text" id="apx5" size=1 onchange="set_ap(5);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy5" size=1 onchange="set_ap(5);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apz5" size=1 onchange="set_ap(5);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd5" size=1 disabled></td><td><input type="button" id="rnd5" value="Rand" onclick="rndone(5);"></td></tr>
+							<tr id="aptr6"><td id="apc6"><input type="text" id="apn6" size=1 disabled></td><td><input type="text" id="apx6" size=1 onchange="set_ap(6);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apy6" size=1 onchange="set_ap(6);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apz6" size=1 onchange="set_ap(6);" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="apd6" size=1 disabled></td><td><input type="button" id="rnd6" value="Rand" onclick="rndone(6);"></td></tr>
+						</table>
+						<!--hr size=4-->
+						<table border=1>
+							<tr align="center"><th colspan=6>Your position</th></tr>
+							<tr align="center"><th><input type="button" id="rwalk" value="Walk" onclick="rndwalk();"></th><th>x</th><th>y</th><th>z</th><th>error</th></tr>
+							<tr><td>Clicked</td><td><input type="text" id="ypx1" size=1 disabled></td><td><input type="text" id="ypy1" size=1 disabled></td><td><input type="text" id="ypz1" size=1 disabled></td><td>&nbsp;</td></tr>
+							<tr><td>4 pts  </td><td><input type="text" id="ypx2" size=1 disabled></td><td><input type="text" id="ypy2" size=1 disabled></td><td><input type="text" id="ypz2" size=1 disabled></td><td><input type="text" id="ype2" size=1 disabled></td></tr>
+							<tr><td>All pts</td><td><input type="text" id="ypx3" size=1 disabled></td><td><input type="text" id="ypy3" size=1 disabled></td><td><input type="text" id="ypz3" size=1 disabled></td><td><input type="text" id="ype3" size=1 disabled></td></tr>
+						</table>
+						<!--hr size=4-->
+						<table border=1>
+							<tr align="center"><th colspan=5>Calibration points</th></tr>
+							<tr align="center"><th></th><th>x</th><th>y</th><th>z</th><th>d</th></tr>
+							<tr><td>CP1</td><td><input type="text" id="cpx1" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpy1" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpz1" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpd1" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td></tr>
+							<tr><td>CP2</td><td><input type="text" id="cpx2" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpy2" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpz2" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpd2" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td></tr>
+							<tr><td>CP3</td><td><input type="text" id="cpx3" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpy3" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpz3" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpd3" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td></tr>
+							<tr><td>CP4</td><td><input type="text" id="cpx4" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpy4" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpz4" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpd4" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td></tr>
+							<tr><td>CP5</td><td><input type="text" id="cpx5" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpy5" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpz5" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpd5" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td></tr>
+							<tr><td>CP6</td><td><input type="text" id="cpx6" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpy6" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpz6" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td><td><input type="text" id="cpd6" size=1 onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"></td></tr>
+						</table>
+					</form>
+				</td>
+				<td align='center' valign='top'>
+					<svg id="graph" width="800" height="600" style="background: pink" onclick="set_cp(evt);">
+						<circle id="gap1" cx="133" cy="100" r="5" stroke="black" stroke-width="1" fill="red"    />
+						<circle id="gap2" cx="666" cy="100" r="5" stroke="black" stroke-width="1" fill="green"  />
+						<circle id="gap3" cx="250" cy="300" r="5" stroke="black" stroke-width="1" fill="blue"   />
+						<circle id="gap4" cx="550" cy="300" r="5" stroke="black" stroke-width="1" fill="cyan"   />
+						<circle id="gap5" cx="133" cy="500" r="5" stroke="black" stroke-width="1" fill="magenta"/>
+						<circle id="gap6" cx="666" cy="500" r="5" stroke="black" stroke-width="1" fill="yellow" />
+						<circle id="gcp3" cx="400" cy="300" r="9" stroke="black" stroke-width="1" fill="white"  />
+						<circle id="gcp2" cx="400" cy="300" r="6" stroke="black" stroke-width="1" fill="white"  />
+						<circle id="gcp1" cx="400" cy="300" r="3" stroke="black" stroke-width="1" fill="white"  />
+					</svg>
+				</td>
+			</tr>
+		</table>
+		<script language="javascript" type="text/javascript">
+			// ***** This is the initialization phase ...
+			// Set a new building
+			var width = 800;
+			var height = 600;
+			var depth = 0;
+			var nap = 6;
+			var ncp = 3;
+			var nsp = 6;
+			var myBld = new building;
+			myBld.set_size(width, height, depth);
+			// Add access points, calibration points and customer_points
+			var i;
+			for (i = 0; i < nap; i++){myBld.add_access_point();}
+			for (i = 0; i < ncp; i++){myBld.add_customer_position();}
+			for (i = 0; i < nsp; i++){myBld.add_calib_point();}
+			// Set the initial customer positions
+			reset_cps();
+			// Set the initial positions of the access points and calculate the distances
+			reset_aps();
+			// Initial dumps
+			dump_cps();
+			dump_aps();
+			// ... Initialization phase ends here ****
+			function reset_cps(){
+				myBld.get_customer_position(0).set_coor(400,300,0);
+				myBld.get_customer_position(1).set_coor(400,300,0);
+				myBld.get_customer_position(2).set_coor(400,300,0);
+			}
+			function reset_aps(){
+				myBld.get_access_point(0).set_name("AP1"); myBld.get_access_point(0).set_color("red"    ); myBld.get_access_point(0).set_coor(133,100,0);
+				myBld.get_access_point(1).set_name("AP2"); myBld.get_access_point(1).set_color("green"  ); myBld.get_access_point(1).set_coor(666,100,0);
+				myBld.get_access_point(2).set_name("AP3"); myBld.get_access_point(2).set_color("blue"   ); myBld.get_access_point(2).set_coor(250,300,0);
+				myBld.get_access_point(3).set_name("AP4"); myBld.get_access_point(3).set_color("cyan"   ); myBld.get_access_point(3).set_coor(550,300,0);
+				myBld.get_access_point(4).set_name("AP5"); myBld.get_access_point(4).set_color("magenta"); myBld.get_access_point(4).set_coor(133,500,0);
+				myBld.get_access_point(5).set_name("AP6"); myBld.get_access_point(5).set_color("yellow" ); myBld.get_access_point(5).set_coor(666,500,0);
+				dump_aps();
+				plot_aps();
+			}
+			function calc_dist(){
+				for (i = 1; i <= nap; i++) calc_dist(i);
+			}
+			function calc_dist(dummy){
+				myBld.get_access_point(dummy - 1).setd(
+					myBld.get_customer_position(0).getx(),
+					myBld.get_customer_position(0).gety(),
+					myBld.get_customer_position(0).getz()
+				);
+				set_ap(dummy);
+			}
+			function dump_apd(dummy){
+				document.getElementById("apd" + dummy).value = myBld.get_access_point(dummy - 1).getd();
+			}
+			function dump_apds(){
+				for (i = 1; i <= nap; i++) dump_apd(i);
+			}
+			function dump_ap(dummy){
+				document.getElementById("apc" + dummy).style.backgroundColor = myBld.get_access_point(dummy - 1).get_color();
+				document.getElementById("apn" + dummy).value = myBld.get_access_point(dummy - 1).get_name();
+				document.getElementById("apx" + dummy).value = myBld.get_access_point(dummy - 1).getx();
+				document.getElementById("apy" + dummy).value = myBld.get_access_point(dummy - 1).gety();
+				document.getElementById("apz" + dummy).value = myBld.get_access_point(dummy - 1).getz();
+			}
+			function dump_aps(){
+				for (i = 1; i <= nap; i++) dump_ap(i);
+			}
+			function dump_cp(dummy){
+				document.getElementById("ypx" + dummy).value = myBld.get_customer_position(dummy - 1).getx();
+				document.getElementById("ypy" + dummy).value = myBld.get_customer_position(dummy - 1).gety();
+				document.getElementById("ypz" + dummy).value = myBld.get_customer_position(dummy - 1).getz();
+				if (dummy > 1) document.getElementById("ype" + dummy).value = myBld.get_customer_position(dummy - 1).gete();
+			}
+			function dump_cps(){
+				for (i = 1; i <= ncp; i++) dump_cp(i);
+			}
+			function plot_cp(dummy){
+				document.getElementById("graph").getElementById("gcp" + dummy).setAttribute("cx", myBld.get_customer_position(dummy - 1).getx());
+				document.getElementById("graph").getElementById("gcp" + dummy).setAttribute("cy", myBld.get_customer_position(dummy - 1).gety());
+			}
+			function plot_cps(){
+				for (i = 1; i <= ncp; i++) plot_cp(i);
+			}
+			function set_ap(dummy){
+				myBld.get_access_point(dummy - 1).set_coor(document.getElementById("apx" + dummy).value, document.getElementById("apy" + dummy).value, document.getElementById("apz" + dummy).value);
+				myBld.get_access_point(dummy - 1).setd(myBld.get_customer_position(0).getx(), myBld.get_customer_position(0).gety(), myBld.get_customer_position(0).getz());
+				document.getElementById("apd" + dummy).value = myBld.get_access_point(dummy - 1).getd();
+				plot_ap(dummy);
+			}
+			function plot_ap(dummy){
+				document.getElementById("graph").getElementById("gap" + dummy).setAttribute("cx", myBld.get_access_point(dummy - 1).getx());
+				document.getElementById("graph").getElementById("gap" + dummy).setAttribute("cy", myBld.get_access_point(dummy - 1).gety());
+				//document.getElementById("graph").getElementById("gap" + dummy).setAttribute("cz", myBld.get_access_point(dummy - 1).getz());
+			}
+			function plot_aps(){
+				for (i = 1; i <= nap; i++) plot_ap(i);
+			}
+			function set_cp(evt){
+				var pt = document.getElementById("graph").createSVGPoint();
+				pt.x = evt.clientX;
+				pt.y = evt.clientY;
+				var cursorpt =  pt.matrixTransform(document.getElementById("graph").getScreenCTM().inverse());
+				myBld.get_customer_position(0).set_coor(cursorpt.x, cursorpt.y, 0);
+				for (i = 1; i <= nap; i++){
+					myBld.get_access_point(i - 1).setd(myBld.get_customer_position(0).getx(), myBld.get_customer_position(0).gety(), myBld.get_customer_position(0).getz());
+				}
+				myBld.resolve();
+				dump_apds();
+				dump_cps();
+				plot_cps();
+			}
+			function rndall(){
+				var i;
+				for(i = 1; i <= nap; i++) {rndone(i);};
+			}
+			function rndone(dummy){
+				document.getElementById("apx" + dummy).value = Math.floor(Math.random() * width);
+				document.getElementById("apy" + dummy).value = Math.floor(Math.random() * height);
+				document.getElementById("apz" + dummy).value = Math.floor(Math.random() * depth);
+				set_ap(dummy);
+				myBld.resolve();
+				dump_aps();
+				dump_cps();
+			}
+			function rndwalk(){
+				var i;
+				dx = Math.floor(Math.random() * 20) - 10;
+				dy = Math.floor(Math.random() * 20) - 10;
+				dz = 0;
+				myBld.get_customer_position(0).set_coor(myBld.get_customer_position(0).getx() + dx, myBld.get_customer_position(0).gety() + dy, myBld.get_customer_position(0).getz() + dz);
+				for (i = 1; i <= nap; i++){
+					myBld.get_access_point(i - 1).setd(myBld.get_customer_position(0).getx(), myBld.get_customer_position(0).gety(), myBld.get_customer_position(0).getz());
+				}
+				if ((myBld.get_customer_position(0).getx() < 0) || (myBld.get_customer_position(0).getx() > width )) dx = -dx;
+				if ((myBld.get_customer_position(0).gety() < 0) || (myBld.get_customer_position(0).gety() > height)) dy = -dy;
+				if ((myBld.get_customer_position(0).getz() < 0) || (myBld.get_customer_position(0).getz() > depth )) dz = -dz;
+				myBld.resolve();
+				dump_aps();
+				dump_cps();
+				plot_cps();
+			}
+		</script>
+	</body>
+</html>

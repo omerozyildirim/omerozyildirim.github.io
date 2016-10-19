@@ -1,0 +1,1 @@
+[ { "featureType": "landscape", "stylers": [ { "lightness": 100 }, { "visibility": "on" } ] },{ "featureType": "poi", "stylers": [ { "saturation": -100 }, { "lightness": 50 } ] },{ "featureType": "road", "stylers": [ { "saturation": -100 }, { "lightness": 49 } ] },{ "featureType": "transit", "stylers": [ { "saturation": -100 }, { "lightness": 51 } ] } ]

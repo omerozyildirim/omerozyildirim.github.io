@@ -1,0 +1,11 @@
+<HTML>
+<BODY>
+<p>This is page 1.</p>
+<FORM METHOD="LINK" ACTION="page.html">
+<INPUT TYPE="submit" VALUE="Page">
+</FORM>
+<FORM>
+<INPUT TYPE="button" onClick="parent.location='page.html'">
+</FORM>
+</BODY>
+</HTML>

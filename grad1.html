@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Made with Thimble</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="grey">
+
+  <h1>Welcome to Thimble</h1>
+
+  <p>Make something <strong>amazing</strong> with the web!</p>
+  <!DOCTYPE html>
+  <html>
+    <body>
+
+      <svg height="500" width="500">
+        <defs>
+          <radialGradient id="gradFire1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+            <stop offset="25%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+            <stop offset="75%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
+          </radialGradient>
+          <radialGradient id="gradFire2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" style="stop-color:rgb(0,0,0);stop-opacity:0" />
+            <stop offset="25%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+            <stop offset="75%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgb(255,255,255);stop-opacity:0" />
+          </radialGradient>
+          <radialGradient id="gradGreen1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" style="stop-color:rgb(0,255,0);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgb(0,255,0);stop-opacity:0" />
+          </radialGradient>
+        </defs>
+        <circle cx="250" cy="250" r="100" fill="url(#gradFire1)" />
+        <circle id="circle1" cx="50" cy="50" r="50" fill="url(#gradGreen1)" />
+        <animate attributeType="XML" xlink:href="#circle1" attributeName="cx" from="50" to="100" begin="0" dur="1s" fill="repeat" repeatCount="indefinite" />
+        <circle id="circle2" cx="75" cy="50" r="50" fill="url(#gradGreen1)" />
+        <animate attributeType="XML" xlink:href="#circle2" attributeName="cx" from="75" to="150" begin="0" dur="1s" fill="repeat" repeatCount="indefinite" />
+        <circle id="circle3" cx="100" cy="50" r="50" fill="url(#gradGreen1)" />
+        <animate attributeType="XML" xlink:href="#circle3" attributeName="cx" from="100" to="200" begin="0" dur="1s" fill="repeat" repeatCount="indefinite" />
+        Sorry, your browser does not support inline SVG.
+      </svg>
+
+    </body>
+  </html>
+
+</body>
+</html>

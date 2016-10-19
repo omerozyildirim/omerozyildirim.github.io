@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<script>
+			function initialize(){
+				table1.style.visibility="collapse";
+				table2.style.visibility="collapse";
+				table3.style.visibility="collapse";
+				selectBox.value="0";
+			}
+			function show(dummy){
+				table1.style.visibility="collapse";
+				table2.style.visibility="collapse";
+				table3.style.visibility="collapse";
+				dummy.style.visibility="visible";
+			}
+			window.onload = initialize;
+		</script>
+	</head>
+	<body>
+		<form>
+			<select name="SelectBox" id="selectBox">
+				<option value="0" onclick="initialize()">Choose</option>
+				<option value="1" onclick="show(table1)">Table 1</option>
+				<option value="2" onclick="show(table2)">Table 2</option>
+				<option value="3" onclick="show(table3)">Table 3</option>
+			</select>
+			<table id="table1" border="1"><tr><td>Table 1 visible</td></tr></table>
+			<table id="table2" border="1"><tr><td>Table 2 visible</td></tr></table>
+			<table id="table3" border="1"><tr><td>Table 3 visible</td></tr></table>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+MÜÞTERÝ MODÜLÜ
+
+index
+	Giriþ ekraný. Logo, haberler, resimler, reklamlar, Müþteri giriþ. Müþteri giriþ yaptýktan sonra customer sayfasýna düþüyor.
+
+customer
+	Müþterinin gönderdiði iþlerin listesi, onay butonlarý, yeni iþ giriþi butonu
+	Görülecek alanlar:
+		KargoNo, Marka, Model, Þikayet, Konum, Teþhis, Tamir, Fiyat, [Onay]
+
+addjob.html
+	Müþterinin yeni bir iþ tanýmladýðý ekran. Yeni iþ buttonu ile geliniyor. [Gir] butonundan sonra customer ekranýna düþülüyor.
+	Girilecek alanlar:
+		KargoNo, Marka, Model, Þikayet, [Gir]
+
+
+ÇALIÞAN MODÜLÜ
+
+login.html
+	Çalýþanýn log in olduðu ekran. [giriþ] butonu employee ekranýna düþüyor.
+	Girilecek alanlar:
+		Kullanýcý adý, þifre, [gir]
+
+employee
+	Çalýþanýn þimdiye kadar aldýðý ve tamamladýðý tüm iþlerin listesi. Yeni iþ ekleme butonu ile choosenewjob ekranýna düþülüp iþ üstleniliyor.
+
+choosenewjob
+	Üstlenilmemiþ iþlerin listesi. Listede [Üstlen] fieldi var, týklayarak çalýþan jobu üstleniyor.
+
+
+YÖNETÝCÝ MODÜLÜ
+
+login.html
+	Yöneticinin log in olduðu ekran. [giriþ] butonu manager ekranýna düþüyor.
+	Girilecek alanlar:
+		Kullanýcý adý, þifre, [gir]
+
+oldjobs
+	Tamamlanmýþ tüm iþlerin listesi. Çalýþan sütunundan çalýþan profili ekranýna düþülüyor.
+
+alljobs
+	Yýl içinde gelen tüm iþlerin listesi.
+
+empprofile
+	Çalýþan profili sayfasý. Çalýþanýn tamamladýðý ve üstlendiði tüm iþlerin görüldüðü sayfa.

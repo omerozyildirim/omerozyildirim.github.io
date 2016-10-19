@@ -1,0 +1,79 @@
+NOTES: Pages including input forms are .html files, giving table outputs are .php files
+
+CREATE TABLE tblUsertype(
+id TINYINT,
+type VARCHAR(13)
+);
+
+# administrator, manager, staff, customer
+
+CREATE TABLE tblUsers(
+id INT,
+username VARCHAR(20),
+password VARCHAR(20),
+usertype TINYINT
+);
+
+CREATE TABLE tblStaff(
+id INT,
+uid INT,
+email VARCHAR(30),
+phone VARCHAR(12),
+lastBrand VARCHAR(10)
+);
+
+CREATE TABLE tblCustomer(
+id INT,
+uid INT,
+email VARCHAR(30),
+snailmail VARCHAR(256),
+phone VARCHAR(12),
+discountPercent TINYINT
+);
+
+CEATE TABLE tblStatus(
+id TINYINT,
+status VARCHAR(30)
+);
+
+# geliþ yolunda, inceleniyor, onay bekliyor, reddedildi, onaylandý, onarýmda, gönderildi
+
+CREATE TABLE jobs(
+id INT,
+cid INT,
+delivery_code VARCHAR(30),
+brand VARCHAR(20),
+model VARCHAR(20),
+serial VARCHAR(30),
+battery TINYINT,
+symptoms VARCHAR(256),
+customerSendDate DATETIME,
+status TINYINT,
+arriveDate DATETIME,
+sid INT,
+diagnosis VARCHAR(256),
+cure VARCHAR(256),
+price DECIMAL(5,2),
+clearance TINYINT,
+clearanceDate DATETIME,
+finishDate DATETIME,
+sendDate DATETIME
+);
+
+login.php
+SELECT useremail FROM tblCustomer WHERE useremail = $username;
+search user in tblCustomer if found usertype is customer
+search user in tblManager if found usertype is manager
+search user in tblStaff if found usertype is staff
+if usertype is administrator call administrator.php
+if usertype is manager call manager.php
+if usertype is staff call staff.php
+if usertype is customer call customer.php
+
+customer.php
+SELECT brand,model,serial,battery,symptoms,
+status,arrive_date,diagnosis,cure,price,
+clearance_date,finish_date,send_date
+FROM jobs;
+
+add new job button directs to addjob.html

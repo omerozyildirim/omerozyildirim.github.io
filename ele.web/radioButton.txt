@@ -1,0 +1,9 @@
+<FORM ACTION="../cgi-bin/mycgi.pl">
+What size pizza?<P>
+
+<INPUT TYPE=RADIO NAME="pizzasize" VALUE="S"         >small<BR>
+<INPUT TYPE=RADIO NAME="pizzasize" VALUE="M" CHECKED >medium<BR>
+<INPUT TYPE=RADIO NAME="pizzasize" VALUE="L"         >large<P>
+
+<INPUT TYPE=SUBMIT VALUE="submit">
+</FORM>

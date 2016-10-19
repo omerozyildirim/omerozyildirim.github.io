@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<title></title>
+		<meta content="">
+		<style></style>
+		<script src="gislib.js"></script>
+	</head>
+	<body>
+		<p>
+			<script>
+				var nodelist = [
+					{x: 0.0, y: 0.00},
+					{x: 0.1, y: 0.01},
+					{x: 0.2, y: 0.04},
+					{x: 0.3, y: 0.09},
+					{x: 0.4, y: 0.16},
+					{x: 0.5, y: 0.25},
+					{x: 0.6, y: 0.36},
+					{x: 0.7, y: 0.49},
+					{x: 0.8, y: 0.64},
+					{x: 0.9, y: 0.81},
+					{x: 1.0, y: 1.00}
+				];
+				var myroad = new road("myRoad");
+				var i;
+				myroad.add_nodes(nodelist);
+				for (i = 0; i < myroad.segments.length; i++)
+					document.write(myroad.segments[i].snode.x + ", " + myroad.segments[i].snode.y + ", " +  myroad.segments[i].linear_length + "<br>");
+				document.write("<br>");
+				document.write("The total length of the road is " + myroad.get_linear_length() + "<br>");
+				document.write("<br>");
+				myroad.clear();
+				var nodelist2 = [
+					{x: 1.1, y: 1.01},
+					{x: 1.2, y: 1.04},
+					{x: 1.3, y: 1.09},
+					{x: 1.4, y: 1.16},
+					{x: 1.5, y: 1.25},
+					{x: 1.6, y: 1.36},
+					{x: 1.7, y: 1.49},
+					{x: 1.8, y: 1.64},
+					{x: 1.9, y: 1.81},
+					{x: 2.0, y: 2.00}
+				];
+				myroad.add_nodes(nodelist2);
+				for (i = 0; i < myroad.segments.length; i++)
+					document.write(myroad.segments[i].snode.x + ", " + myroad.segments[i].snode.y + ", " +  myroad.segments[i].linear_length + "<br>");
+				document.write("<br>");
+				document.write("The total length of the road is " + myroad.get_linear_length() + "<br>");
+				document.write("<br>");
+				myroad.clear();
+				myroad.add_nodes(nodelist);
+				myroad.add_nodes(nodelist2);
+				for (i = 0; i < myroad.segments.length; i++)
+					document.write(myroad.segments[i].snode.x + ", " + myroad.segments[i].snode.y + ", " +  myroad.segments[i].linear_length + "<br>");
+				document.write("<br>");
+				document.write("The total length of the road is " + myroad.get_linear_length() + "<br>");
+				myroad.clear();
+			</script>
+		</p>
+	</body>
+</html>

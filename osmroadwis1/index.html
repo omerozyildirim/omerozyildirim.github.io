@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>OSM Road Visualization</title>
+	<script src='leaflet/leaflet.js'></script>
+	<!--script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise"></script-->
+	<script src="leaflet/leaflet-bing-layer.js"></script>
+	<link href='leaflet/leaflet.css' rel='stylesheet' />
+	<script src="main.js"></script>
+</head>
+<body onload="init()">
+	<table border="1" width="100%" height="100%">
+	<tr>
+		<td><input type="file" id="infile" onchange="importfile(this)" /></td>
+		<td align="right">Precision:<input type="number" id="precbox" onchange="displayroad(roadsel)" min="1" max="20" value="10">(Set to 1 for the raw point set)</td>
+		<td align="left">Select road:<select id="roadsel" onchange="displayroad(this)"></select></td>
+	</tr>
+	<tr><td colspan="3"><div id="map" style="height: 800px"></div></td></tr>
+	</table>
+</body>
+</html>

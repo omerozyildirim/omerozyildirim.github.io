@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet href="treemap.css" type="text/css"?>
+
+<!DOCTYPE svg PUBLIC  "-//W3C//DTD SVG 1.0//EN"
+                      "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 600 600" xml:space="preserve"
+     xmlns:a3="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" a3:scriptImplementation="Adobe">
+
+  <!--script a3:scriptImplementation="Adobe" type="text/ecmascript" xlink:href="box.es" />
+  <script a3:scriptImplementation="Adobe" type="text/ecmascript" xlink:href="treemap.es" /-->
+  <title>Sacré SVG - Interactive Tree Map!</title>
+
+  <animate  id="anim" attributeName="viewBox" begin="undefined" dur="0.75s" values=""
+            keyTimes="0; 1" keySplines="0 .75 0.25 1" calcMode="spline" fill="freeze" />
+
+  <g class="even">
+    <rect id="start" width="600" height="600" />
+    <text x="10" y="30">ROOT</text>
+    <g class="odd" transform="translate(400,400) scale(0.3333)" onmousedown="startAnimation()">
+      <g>
+        <rect width="600" height="600" style="opacity: 0.666" />
+        <text x="10" y="30">FIRST CHILD</text>
+        <g class="even" transform="translate(400,400) scale(0.3333)">
+          <g>
+            <rect width="600" height="600" style="opacity: 0.666;" />
+            <text x="10" y="30">FIRST CHILD</text>
+            <g class="odd" transform="translate(400,400) scale(0.3333)">
+              <g>
+                <rect width="600" height="600" style="opacity: 0.666;" />
+                <text x="10" y="30">FIRST CHILD</text>
+              </g>
+              <g transform="translate(0,-600)">
+                <rect width="600" height="600" style="opacity: 0.333" />
+                <text x="10" y="30">SECOND CHILD</text>
+              </g>
+              <g transform="translate(-600,0)">
+                <rect width="600" height="600" style="opacity: 0.333" />
+                <text x="10" y="30">THIRD CHILD</text>
+              </g>
+            </g>
+          </g>
+          <g transform="translate(0,-600)">
+            <rect width="600" height="600" style="opacity: 0.333" />
+            <text x="10" y="30">SECOND CHILD</text>
+          </g>
+          <g transform="translate(-600,0)">
+            <rect width="600" height="600" style="opacity: 0.333" />
+            <text x="10" y="30">THIRD CHILD</text>
+          </g>
+        </g>
+      </g>
+      <g transform="translate(0,-600)">
+        <rect width="600" height="600" style="opacity: 0.333" />
+        <text x="10" y="30">SECOND CHILD</text>
+        <g class="odd" transform="translate(400,400) scale(0.3333)">
+          <g>
+            <rect width="600" height="600" style="opacity: 0.666;" />
+            <text x="10" y="30">FIRST CHILD</text>
+          </g>
+          <g transform="translate(0,-600)">
+            <rect width="600" height="600" style="opacity: 0.333" />
+            <text x="10" y="30">SECOND CHILD</text>
+          </g>
+          <g transform="translate(-600,0)">
+            <rect width="600" height="600" style="opacity: 0.333" />
+            <text x="10" y="30">THIRD CHILD</text>
+          </g>
+          <g transform="translate(-600,-600)">
+            <rect width="600" height="600" style="opacity: 0.666" />
+            <text x="10" y="30">FOURTH CHILD</text>
+          </g>
+          <g transform="translate(-1200,0)">
+            <rect width="600" height="600" style="opacity: 0.666" />
+            <text x="10" y="30">FIFTH CHILD</text>
+          </g>
+        </g>
+      </g>
+      <g transform="translate(-600,0)">
+        <rect width="600" height="600" style="opacity: 0.333" />
+        <text x="10" y="30">THIRD CHILD</text>
+      </g>
+    </g>
+  </g>
+
+</svg>

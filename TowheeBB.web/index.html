@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Towhee Box Builder</title>
+	</head>
+	<body name="body" onload="highlight();">
+		<script language="javascript" type="text/javascript" src="main.js"></script>
+		<h3>MCCCS Towhee Box Builder</h3>
+		<table border=1>
+			<tr>
+				<td valign=top>
+					<form name="form0">
+					<b>Select calculation</b><br>
+					<input type="radio" name="calcType" id="cubicVolume" value="cubicVolume" onclick="highlight();">Cubic volume&nbsp;<br>
+					<input type="radio" name="calcType" id="solventNum"  value="solventNum"  onclick="highlight();">Number of solvent molecules&nbsp;<br>
+					<input type="radio" name="calcType" id="soluteNum"   value="soluteNum"   onclick="highlight();">Number of solute molecules&nbsp;<br>
+					<input type="radio" name="calcType" id="soluteConc"  value="soluteConc"  onclick="highlight();">Solute concentration&nbsp;<br>
+					<input type="radio" name="calcType" id="boxHeight"   value="boxHeight"   onclick="highlight();">Box height&nbsp;<br>
+				</td>
+				<td valign=top>
+					<form name="form1">
+					<table border=0 id="tbl1">
+						<tr><th align=left>Parameters</th><td><button type="button" name="clear" onclick="clearValues();">Clear all</button></td></tr>
+						<tr><td>Solvent type               </td><td id="solventsCell"     ><select name="solvents" id="solvents" onChange="selectSolvent();"></select><script>fillSolventList();</script></td></tr>
+						<tr><td>Solvent density            </td><td id="densityCell"      ><input type="text" id="density"       onkeyup="numberize(this);"></td><td>g/cm&#179;</td></tr>
+						<tr><td>Solvent molecular weight   </td><td id="mwCell"           ><input type="text" id="mw"            onkeyup="numberize(this);"></td><td>g/mol</td></tr>
+						<tr><td>Number of solvent molecules</td><td id="numsolventCell"   ><input type="text" id="numsolvent"    onkeyup="numberize(this);"></td><td>-</td></tr>
+						<tr><td>Number of solute molecules </td><td id="numsoluteCell"    ><input type="text" id="numsolute"     onkeyup="numberize(this);"></td><td>-</td></tr>
+						<tr><td>Solute concentration       </td><td id="concentrationCell"><input type="text" id="concentration" onkeyup="numberize(this);"></td><td>mol/L</td></tr>
+						<tr><td>Box type                   </td><td id="cubicCell"        ><input type="checkbox" id="cubic" onclick="setCubicBox();">cubic</td></tr>
+						<tr><td>Box width                  </td><td id="widthCell"        ><input type="text" id="width"         onkeyup="numberize(this);" onchange="cubicCopy();"></td><td>&#8491;</td></tr>
+						<tr><td>Box depth                  </td><td id="depthCell"        ><input type="text" id="depth"         onkeyup="numberize(this);"></td><td>&#8491;</td></tr>
+						<tr><td>Box height                 </td><td id="heightCell"       ><input type="text" id="height"        onkeyup="numberize(this);"></td><td>&#8491;</td></tr>
+						<tr><td>                           </td><td align=left            ><button type="button" name="action" onclick="calculate();">Calculate</button></td></tr>
+					</table>
+					</form>
+				</td>
+				<td valign=top>
+					<b>towhee_input</b><br>
+					<textarea rows=16 cols=20></textarea>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

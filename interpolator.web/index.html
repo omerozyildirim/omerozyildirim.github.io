@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<script src="main.js"></script>
+	</head>
+	<body>
+		<p><canvas width="640" height="512" id="myCanvas" style="border:1px solid #000000;">
+		Your browser does not support canvases.</canvas></p>
+		<script>
+			function getMousePos(canvas, evt) {
+				var rect = canvas.getBoundingClientRect();
+				return {x: evt.clientX - rect.left, y: evt.clientY - rect.top};
+			}
+			var canvas = document.getElementById('myCanvas');
+			var context = canvas.getContext('2d');
+			canvas.addEventListener('mouseup', function(evt) {
+				var mousePos = getMousePos(canvas, evt);
+				add_point(mousePos.x, mousePos.y);
+				plot_on_canvas(mousePos.x, mousePos.y);
+			}, false);
+		</script>
+		<p><button onclick="draw_all()">D r a w !</button></p>
+	</body>
+</html>

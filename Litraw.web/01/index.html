@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Haritaları Kucukcekmece</title>
+<meta name="generator" content="Bootply" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href="bootstrap.min.css" rel="stylesheet">
+<link href="styles.css" rel="stylesheet">
+</head>
+<body>
+	<!-- begin template -->
+	<div class="navbar navbar-custom navbar-fixed-top">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="http://www.kucukcekmece.bel.tr/">
+				<img id="belediye-simge" alt="Kucukcekmece-logo" src="http://www.kucukcekmece.bel.tr/Content/img/amblem-white.png"/>
+			</a>
+			<a class="navbar-brand" href="http://www.itu.edu.tr/anasayfa">
+				<img id="itu-simge" alt="ITU-logo" src="http://www.itu.edu.tr/images/default-source/ITUSystemImageLibrary/i-stanbul-teknik-%C3%BCniversitesi05FAF3B736BA.png?sfvrsn=2"/>
+			</a>
+			<a
+				class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse"> <span class="icon-bar"></span> <span
+				class="icon-bar"></span> <span class="icon-bar"></span>
+			</a>
+		</div>
+		<div class="navbar-collapse">
+			<button id="button-sinirlar" type="button" class="btn btn-default navbar-btn" onclick="sinirlar()">Küçükçekmece Belediyesi Sınırları</button>
+			<button id="button-ofisi" type="button" class="btn btn-default navbar-btn" onclick="ofisi()">Küçükçekmece Belediyesi Ofisi</button>
+			<button id="button-asfaltkaplama2012" type="button" class="btn btn-default navbar-btn" onclick="asfaltkaplama2012()">Asfalt Kaplama 2012</button>
+			<button id="button-sporalanlari2010" type="button" class="btn btn-default navbar-btn" onclick="sporalanlari2010()">Sporalanlari 2010</button>
+			<button type="button" class="btn btn-danger navbar-btn" onclick="reload()">Yeniden</button>
+
+		</div>
+	</div>
+	<div id="map-canvas">
+		<div data-alerts="alerts" data-titles="{'warning': '<em>Warning!</em>'}" data-ids="myid" data-fade="3000"></div>
+		<div id="your-position"></div>
+	</div>
+	<!-- end template -->
+	<!-- Experimentation by OmerO -->
+	<div id="svg_layer">
+		<img src="mahalleler.svg" id="mah"/>
+	</div>
+	<!-- End of experimentation -->
+	<!-- script references -->
+	<script src="handle_svg.js"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="http://openlayers.org/en/master/build/ol.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<script src="bootbox.min.js"></script>
+	<script type="text/javascript" src="loadInitMap.js"></script>
+	<script type="text/javascript" src="typesOfLayers.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#button-sinirlar').click(function() {
+				$(this).toggleClass('btn btn-success btn btn-default');
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#button-ofisi').click(function() {
+				$(this).toggleClass('btn btn-success btn btn-default');
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#button-asfaltkaplama2012').click(function() {
+				$(this).toggleClass('btn btn-success btn btn-default');
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#button-sporalanlari2010').click(function() {
+				$(this).toggleClass('btn btn-success btn btn-default');
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		function reload() {
+    		location.reload();
+		}
+	</script>
+</body>
+</html>

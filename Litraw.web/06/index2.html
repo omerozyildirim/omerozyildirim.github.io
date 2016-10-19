@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Küçükçekmece Belediyesi Hizmetler Haritası</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-9">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/mapdata.js"></script>
+		<script src="js/main.js"></script>
+		<link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/css.css" rel="stylesheet">
+	</head>
+	<!--body onload="init()" onmouseover="var xx = event.clientX, yy = event.clientY, elementMouseIsOver = document.elementFromPoint(xx, yy); console.log(elementMouseIsOver);"-->
+	<body onload="init()">
+		<div id="logol"><img src="lo.png"/></div><div id="page_title"><h1 align=center><b>KÜÇÜKÇEKMECE BELEDİYESİ HİZMETLER HARİTASI</b></h1></div><div id="logor"><img src="lo.png"/></div>
+		<!--div id="coord_input">
+			<form><center>
+			<table width="100%"><tr><td align="right">
+				GoogleMaps
+				Latitude:   <input type="number" id="in_lat"  step="0.00001" min="40.94" max="41.1"  onchange="slideMap(in_lat.value, in_lon.value, in_zoom.value)" /><br>
+				Longitude:  <input type="number" id="in_lon"  step="0.00001" min="28.63" max="28.93" onchange="slideMap(in_lat.value, in_lon.value, in_zoom.value)" /><br>
+				Zoom level: <input type="number" id="in_zoom" step="1"         min="0"     max="20"    onchange="slideMap(in_lat.value, in_lon.value, in_zoom.value)" />
+				</td><td align="center">
+				SVG viewbox:<br>
+				x: <input type="number" id="in_svgx" onchange="slide_svg(in_svgx.value, in_svgy.value, in_svgw.value, in_svgh.value)" />
+				y: <input type="number" id="in_svgy" onchange="slide_svg(in_svgx.value, in_svgy.value, in_svgw.value, in_svgh.value)" /><br>
+				w: <input type="number" id="in_svgw" onchange="slide_svg(in_svgx.value, in_svgy.value, in_svgw.value, in_svgh.value)" />
+				h: <input type="number" id="in_svgh" onchange="slide_svg(in_svgx.value, in_svgy.value, in_svgw.value, in_svgh.value)" />
+				</td><td align="center">
+				<button type="button" id="btn_log" onclick="log2con()">Log to console</button>
+				</td></tr></table>
+				</center>
+			</form>
+		</div-->
+		<div id="statusbar"><table width="100%"><tr><td id="distname"></td><td id="statusmsg" align="center"></td><td id="distcoords" align="right"></td></tr></table></div>
+		<div id="map-container" class="container-fluid"></div>
+		<div class="dropdown">
+			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Mahalleler<span class="caret"></span></button>
+			<ul class="dropdown-menu" id="dist_menu"></ul>
+		</div>
+		<div class="dropdown2">
+			<button type="button" onclick="clear_colors()">Sıfırla</button><br>
+			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Nüfus Dağılımı<span class="caret"></span></button>
+			<ul class="dropdown-menu">
+				<li><input type="button" id="btn_bebek"      onclick="colorize()" value="Bebek"      /></li>
+				<li><input type="button" id="btn_cocuk"      onclick="colorize()" value="Çocuk"      /></li>
+				<li><input type="button" id="btn_genc"       onclick="colorize()" value="Genç"       /></li>
+				<li><input type="button" id="btn_yetiskin"   onclick="colorize()" value="Yetişkin"   /></li>
+				<li><input type="button" id="btn_orta_yasli" onclick="colorize()" value="Orta yaşlı" /></li>
+				<li><input type="button" id="btn_yasli"      onclick="colorize()" value="Yaşlı"      /></li>
+			</ul>
+		</div>
+		<!--div id="svg_layer" onmousemove="hilite_dist(document.elementFromPoint(event.clientX, event.clientY).id)" onclick="select_district(document.elementFromPoint(event.clientX, event.clientY).id)" visibility="hidden" style="color: white"-->
+		<div id="svg_layer" visibility="hidden" style="color: white">
+			<center>
+			<svg src="livemap.svg" id="vectormap"></svg>
+		</div>
+		<!-- JS stuff -->
+		<script src="jQuery-2.2.0/jquery-2.2.0.min.js"></script>
+		<script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+		<script src="bootstrap-3.3.6-dist/js/bootstrap-dialog.min.js"></script>
+		<script src="http://maps.google.com/maps/api/js"></script>
+		<script src="js/initmap.js"></script>
+		<script src="js/happiness_index_dropdown.js"></script>
+	</body>
+</html>
+<!--
+Atakent        (2174,-229)(5379,2355.5)(8584,4940)
+Atatürk        (5843,-370)(7405.5,1260.5)(8968,2891)
+Beşyol         (6759,11166)(7197,12070)(7635,12974)
+Cennet         (4109,11102)(4986,12339)(5863,13576)
+Cumhuriyet     (3566,9505)(4752,10813.5)(5938,12122)
+Fatih          (2126,9791)(3390,12253.5)(4654,14716)
+Fevzi Çakmak   (5924,8302)(6684.5,9306.5)(7445,10311)
+Gültepe        (5998,10640)(6755,11756.5)(7512,12873)
+Halkalı Merkez (4475,2813)(6879,4712.5)(9283,6612)
+İnönü          (6594,5783)(7790.5,7004.5)(8987,8226)
+İstasyon       (2797,4068)(4241.5,6464.5)(5686,8861)
+Kanarya        (3351,7404)(4725,8645.5)(6099,9887)
+Kartaltepe     (7414,9267)(9062.5,10615.5)(10711,11964)
+Kemalpaşa      (6433,9802)(7011,10349.5)(7589,10897)
+Mehmet Akif    (7354,-305)(8376.5,903)(9399,2111)
+Söğütlüçeşme   (5440,5922)(6131,7338.5)(6822,8755)
+Sultanmurat    (5776,9514)(6162,10255.5)(6548,10997)
+Tevfikbey      (6777,7780)(7936,8882)(9095,9984)
+Yarımburgaz    (14,-39)(1626.5,4412)(3239,8863)
+Yenimahalle    (4045,10434)(4965.5,11389.5)(5886,12345)
+Yeşilova       (5545,10833)(6083.5,12033)(6622,13233)
+-->

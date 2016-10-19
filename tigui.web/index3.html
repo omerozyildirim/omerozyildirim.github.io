@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>Towhee Input GUI v1.0</title>
+</head>
+<body>
+<script language="javascript" type="text/javascript" src="data2.js"></script>
+<script language="javascript" type="text/javascript" src="main2.js"></script>
+<form id="main_form">
+<table border=1><tr><td valign=top align=right>
+<table border=1>
+<tr><th colspan=2>Ensemble</th></tr>
+<tr><td>ensemble</td><td><select id="ensemble" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td>pressure (kPa)</td><td><input type="text" id="pressure" onkeyup="floatize(this);"></td></tr>
+<tr><td>chempot</td><td><input type="text" id="chempot" onkeyup="floatize(this);"></td></tr>
+<tr><td>tmmc_flag</td><td><input type="radio" name="tmmc_flag" id="tmmc_flag_t" value="true">true&nbsp;<input type="radio" name="tmmc_flag" id="tmmc_flag_f" value="false">false</td></tr>
+<tr><td>louthist</td><td><input type="radio" name="louthist" id="louthist_t" value="true">true&nbsp;<input type="radio" name="louthist" id="louthist_f" value="false">false</td></tr>
+<tr><td>hist_label</td><td><input type="text" id="hist_label" onkeyup="integerize(this);"></td></tr>
+<tr><td>hist_suffix</td><td><input type="text" id="hist_suffix"></td></tr>
+<tr><td>hist_nequii</td><td><input type="text" id="hist_nequii" onkeyup="integerize(this);"></td></tr>
+<tr><td>histcalcfreq</td><td><input type="text" id="histcalcfreq" onkeyup="integerize(this);"></td></tr>
+<tr><td>histdumpfreq</td><td><input type="text" id="histdumpfreq" onkeyup="integerize(this);"></td></tr>
+<tr><td>temperature (K)</td><td><input type="text" id="temperature" onkeyup="floatize(this);"></td></tr>
+<tr><td>chempotperstep</td><td><input type="text" id="chempotperstep" onkeyup="integerize(this);"></td></tr>
+</table>
+<table border=1>
+<tr><th colspan=2>Potential</th></tr>
+<tr><td>potentialstyle</td><td><select id="potentialstyle" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr><!-- functions should read cbselect(this); fillSelectList(this);-->
+<tr><td>classical_potential</td><td><select id="classical_potential" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td>electrostatic_form</td><td><select id="electrostatic_form" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td>coulombstyle</td><td><select id="coulombstyle" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td>kalp</td><td><input type="text" id="kalp" onkeyup="floatize(this);"></td></tr>
+<tr><td>kmax</td><td><input type="text" id="kmax" onkeyup="integerize(this);"></td></tr>
+<tr><td>dielect</td><td><input type="text" id="dielect" onkeyup="floatize(this);"></td></tr>
+<tr><td>cewald_prec</td><td><input type="text" id="ewald_prec" onkeyup="floatize(this);"></td></tr>
+<tr><td>rcelect</td><td><input type="text" id="rcelect" onkeyup="floatize(this);"></td></tr>
+<tr><td>max_bond_length</td><td><input type="text" id="max_bond_length" onkeyup="floatize(this);"></td></tr>
+<tr><td>solvation_style</td><td><select id="solvation_style" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td>solvation_type</td><td><input type="text" id="solvation_type" disabled></td></tr>
+</table>
+</td><td valign=top align=right>
+<table border=1>
+<tr><th colspan=2>Simulation</th></tr>
+<tr><td>nmolty</td><td><input type="text" id="nmolty" disabled></td></tr>
+<tr><td>nmolectyp</td><td><textarea id="nmolectyp" cols=23 disabled></textarea></td></tr>
+<tr><td>numboxes</td><td><input type="text" id="numboxes" disabled></td></tr>
+<tr><td>stepstyle</td><td><select id="stepstyle" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td>nstep</td><td><input type="text" id="nstep" onkeyup="integerize(this);"></td></tr>
+<tr><td>controlstyle</td><td><select id="controlstyle" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td>printfreq</td><td><input type="text" id="printfreq" onkeyup="integerize(this);"></td></tr>
+<tr><td>blocksize</td><td><input type="text" id="blocksize" onkeyup="integerize(this);"></td></tr>
+<tr><td>moviefreq</td><td><input type="text" id="moviefreq" onkeyup="integerize(this);"></td></tr>
+<tr><td>backupfreq</td><td><input type="text" id="backupfreq" onkeyup="integerize(this);"></td></tr>
+<tr><td>restartfreq</td><td><input type="text" id="restartfreq" onkeyup="integerize(this);"></td></tr>
+<tr><td>runoutput</td><td><select id="runoutput" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td>pdb_output_freq</td><td><input type="text" id="pdb_output_freq" onkeyup="integerize(this);"></td></tr>
+<tr><td>pressurefreq</td><td><input type="text" id="pressurefreq" onkeyup="integerize(this);"></td></tr>
+<tr><td>trmaxdispfreq</td><td><input type="text" id="trmaxdispfreq" onkeyup="integerize(this);"></td></tr>
+<tr><td>volmaxdispfreq</td><td><input type="text" id="volmaxdispfreq" onkeyup="integerize(this);"></td></tr>
+<tr><td>loutdft</td><td><input type="radio" id="loutdft" value="true">true&nbsp;<input type="radio" id="loutdft" value="false">false</td></tr>
+<tr><td>loutlammps</td><td><input type="radio" id="loutlammps" value="true">true&nbsp;<input type="radio" id="loutlammps" value="false">false</td></tr>
+<tr><td>loutdlpoly</td><td><input type="radio" id="loutdlpoly" value="true">true&nbsp;<input type="radio" id="loutdlpoly" value="false">false</td></tr>
+<tr><td>linit</td><td><input type="radio" id="linit" value="true">true&nbsp;<input type="radio" id="linit" value="false">false</td></tr>
+</table>
+<table border=1>
+<tr><th colspan=2>Random number</th></tr>
+<!--tr><td>inputformat</td><td><input type="text" id="inputformat" value="Towhee" disabled></td></tr-->
+<tr><td>random_number_generator</td><td><select id="random_number_generator" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td>random_luxlevel</td><td><select id="random_luxlevel" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td>random_seed</td><td><input type="text" id="random_seed" onkeyup="integerize(this);"></td></tr>
+<tr><td>random_allow_restart</td><td><input type="radio" id="random_allow_restart" value="true">true&nbsp;<input type="radio" id="random_allow_restart" value="false">false</td></tr>
+</table>
+</td>
+<td colspan=2 valign=top>
+<table border=1>
+<tr><th colspan=2>CBMC</th></tr>
+<tr><td>cbmc_formulation</td><td><select id="cbmc_formulation" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td>cbmc_setting_style</td><td><select id="cbmc_setting_style" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+</table>
+<table id="helix" border=1>
+<tr><th colspan=2>helix</th></tr>
+<tr><td>helix_moltyp</td><td><input type="text" id="helix_moltyp" disabled></td></tr>
+<tr><td>helix_radius</td><td><input type="text" id="helix_radius" onkeyup="floatize(this);"></td></tr>
+<tr><td>helix_angle</td><td><input type="text" id="helix_angle" onkeyup="floatize(this);"></td></tr>
+<tr><td>helix_keytype</td><td><select id="helix_keytype" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td>helix_keyname</td><td><input type="text" id="helix_keyname"></td></tr>
+<tr><td>helix_conlen</td><td><input type="text" id="helix_conlen" onkeyup="floatize(this);"></td></tr>
+<tr><td>helix_phase</td><td><input type="text" id="helix_phase" onkeyup="floatize(this);"></td></tr>
+</table>
+</td></tr></table>
+<br>
+<br>
+<table id="boxes" border=1>
+<tr><th>Box</th><th colspan=4>Box parameters</th><th>Molecules:</th><th>1</th><td><button type="button" id="add_molecule" onclick="add_molecule();">Add molecule</button></td></tr>
+<tr><th>#</th><td align=center>initboxtype</td><td align=center>box_number_density</td><td align=center>hmatrix</td><td align=center>inix iniy iniz</td><td>ff_name</td><td><select id="forcefield0" onChange="cbselect(this);"></select><script>fillSelectList(this)</script></td></tr>
+<tr><th>1</th><td><select id="initboxtype" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td><td><input type="text" id="box_number_density" onkeyup="floatize(this);"></td><td><input type="text" id="hmatrix0" size=4 onkeyup="floatize(this);"><input type="text" id="hmatrix1" size=4 onkeyup="floatize(this);"><input type="text" id="hmatrix2" size=4 onkeyup="floatize(this);"></td><td align=center><input type="text" id="inix" size=4 onkeyup="integerize(this);"></td><td>initstyle</td><td><select id="initstyle0" onChange="cbselect(this);"></select><script>fillSelectList(this);</script></td></tr>
+<tr><td><button type="button" id="delete_box0" onclick="delete_box(0);">Delete</button></td><td>&nbsp;</td><td>&nbsp;</td><td><input type="text" id="hmatrix3" size=4 onkeyup="floatize(this);"><input type="text" id="hmatrix4" size=4 onkeyup="floatize(this);"><input type="text" id="hmatrix5" size=4 onkeyup="floatize(this);"></td><td align=center><input type="text" id="iniy" size=4 onkeyup="integerize(this);"></td><td>initlattice</td><td><select id="initlattice0" onChange="cbselect(this);"></select><script>fillSelectList(this)</script></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td><input type="text" id="hmatrix6" size=4 onkeyup="floatize(this);"><input type="text" id="hmatrix7" size=4 onkeyup="floatize(this);"><input type="text" id="hmatrix8" size=4 onkeyup="floatize(this);"></td><td align=center><input type="text" id="iniz" size=4 onkeyup="integerize(this);"></td><td>initmol</td><td><input type="text" id="initmol0" size=7 onkeyup="integerize(this);"></td></tr>
+<tr><td colspan=5 align=center><button type="button" id="add_box" onclick="add_box();">Add box</button></td><td>&nbsp;</td><td align=center><button type="button" id="delete_molecule0" onclick="delete_molecule(0);">Delete</button></td></tr>
+</table>
+<br>
+<table id="moves" border=1>
+<tr><th colspan=2>Moves</th><th>Probability</th><th>Additional parameters</th></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmvol"          ></td><td valign=top>pmvol          </td><td valign=top><input type="text" id="pmvol"           onkeyup="floatize(this);"></td><td valign=top>pmvlpr<br>rmvol<br>tavol</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmcell"         ></td><td valign=top>pmcell         </td><td valign=top><input type="text" id="pmcell"          onkeyup="floatize(this);"></td><td valign=top>pmcellpr<br>pmcellpt<br>rmcell<br>tacell</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pm2boxrbswap"   ></td><td valign=top>pm2boxrbswap   </td><td valign=top><input type="text" id="pm2boxrbswap"    onkeyup="floatize(this);"></td><td valign=top>pm2rbswmt<br>pm2rbswpr</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pm2boxcbswap"   ></td><td valign=top>pm2boxcbswap   </td><td valign=top><input type="text" id="pm2boxcbswap"    onkeyup="floatize(this);"></td><td valign=top>pm2cbswmt<br>pm2cbswpr</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmuvtcbswap"    ></td><td valign=top>pmuvtcbswap    </td><td valign=top><input type="text" id="pmuvtcbswap"     onkeyup="floatize(this);"></td><td valign=top>pmuvtcbmt</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pm1boxcbswap"   ></td><td valign=top>pm1boxcbswap   </td><td valign=top><input type="text" id="pm1boxcbswap"    onkeyup="floatize(this);"></td><td valign=top>pm1cbswmt</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pm1boxcomswitch"></td><td valign=top>pm1boxcomswitch</td><td valign=top><input type="text" id="pm1boxcomswitch" onkeyup="floatize(this);"></td><td valign=top>pm1comswbox<br>pm1comswpair</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmavb1"         ></td><td valign=top>pmavb1         </td><td valign=top><input type="text" id="pmavb1"          onkeyup="floatize(this);"></td><td valign=top>pmavb1in<br>pmavb1mt<br>pmavb1ct<br>avb1rad</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmavb2"         ></td><td valign=top>pmavb2         </td><td valign=top><input type="text" id="pmavb2"          onkeyup="floatize(this);"></td><td valign=top>pmavb2in<br>pmavb2mt<br>pmavb2ct<br>avb2rad</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmavb3"         ></td><td valign=top>pmavb3         </td><td valign=top><input type="text" id="pmavb3"          onkeyup="floatize(this);"></td><td valign=top>pmavb3mt<br>pmavb3ct<br>avb3rad</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmcb"           ></td><td valign=top>pmcb           </td><td valign=top><input type="text" id="pmcb"            onkeyup="floatize(this);"></td><td valign=top>pmcbmt<br>pmall</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmback"         ></td><td valign=top>pmback         </td><td valign=top><input type="text" id="pmback"          onkeyup="floatize(this);"></td><td valign=top>pmbkmt</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmcbside"       ></td><td valign=top>pmcbside       </td><td valign=top><input type="text" id="pmcbside"        onkeyup="floatize(this);"></td><td valign=top>pmcbsidemt</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmpivot"        ></td><td valign=top>pmpivot        </td><td valign=top><input type="text" id="pmpivot"         onkeyup="floatize(this);"></td><td valign=top>pmpivmt</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmconrot"       ></td><td valign=top>pmconrot       </td><td valign=top><input type="text" id="pmconrot"        onkeyup="floatize(this);"></td><td valign=top>pmcrmt</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmcrback"       ></td><td valign=top>pmcrback       </td><td valign=top><input type="text" id="pmcrback"        onkeyup="floatize(this);"></td><td valign=top>pmcrbmt</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmplane"        ></td><td valign=top>pmplane        </td><td valign=top><input type="text" id="pmplane"         onkeyup="floatize(this);"></td><td valign=top>pmplanebox<br>planewidth</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmrow"          ></td><td valign=top>pmrow          </td><td valign=top><input type="text" id="pmrow"           onkeyup="floatize(this);"></td><td valign=top>pmrowbox<br>rowwidth</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmtraat"        ></td><td valign=top>pmtraat        </td><td valign=top><input type="text" id="pmtraat"         onkeyup="floatize(this);"></td><td valign=top>pmtamt<br>rmtraa<br>tatraa</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmcomposite"    ></td><td valign=top>pmcomposite    </td><td valign=top><input type="text" id="pmcomposite"     onkeyup="floatize(this);"></td><td valign=top>pmcomt<br>rmcomtra<br>rmcomrot</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmtracm"        ></td><td valign=top>pmtracm        </td><td valign=top><input type="text" id="pmtracm"         onkeyup="floatize(this);"></td><td valign=top>pmtcmt<br>rmtrac<br>tatrac</td></tr>
+<tr><td valign=top><input type="checkbox" name="moves" value="pmrotate"       ></td><td valign=top>pmrotate       </td><td valign=top><input type="text" id="pmrotate"        onkeyup="floatize(this);"></td><td valign=top>pmromt<br>rmrot<br>tarot</td></tr>
+</table>
+</form>
+</body>
+</html>

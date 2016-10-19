@@ -1,0 +1,46 @@
+ANA TABLODAKÝ ALANLAR
+
+customer_username VARCHAR(20), Müþteri: Müþterinin username'i
+delivery_code VARCHAR(30), KargoNo: Müþteri tarafýndan yazýlacak Kargo firmasýnýn verdiði numara
+brand VARCHAR(20), Marka: Müþteri tarafýndan Listeden seçilecek
+model VARCHAR(20), Model: Müþteri tarafýndan Listeden seçilecek
+symptoms VARCHAR(256), Þikayet: Müþteri tarafýndan yazýlacak þikayet
+customer_send_date DATE, Müþteri tarafýndan girilecek, kargoya verilme zamaný
+status VARCHAR(10), : Durum bilgisi. Deðerler:
+	geliyor
+	depoda
+	onay bekliyor
+	onaylandý/ödendi
+	tamirde
+	tamir bitti
+	gidiyor.
+arrive_date DATE, : Malýn dükkana geldiði tarih.
+employee_username VARCHAR(20): Çalýþan tarafýndan yazýlacak, iþi üstlenen çalýþanýn ismi
+diagnosis VARCHAR(256): Çalýþan tarafýndan yazýlacak, konulan teþhis.
+cure VARCHAR(256), Çalýþan tarafýndan yazýlacak, uygulanacak onarým
+price CURRENCY, : Çalýþan tarafýndan yazýlacak, onarým masraflarýnýn toplamý
+clearance_date DATE, : Müþterinin tamiri onayladýðý zaman
+finish_date DATE, : Çalýþan tarafýndan girilecek, tamirin bittiði zaman
+send_date DATE : Çalýþan tarafýndan girilecek, tamir edilen veya edilmeyen malýn kargoya verildiði zaman
+
+--------------------
+
+Ýki tablo olacak:
+
+Tablo 1: kullanýcý isimleri ile kullanýcý tiplerini eþleþtirecek
+	Alanlar: username, usertype
+		usertype: administrator, manager, employee, customer
+
+Kullanýcý ismine göre tipinin seçilmesi login.php dosyasýnda gerçekleþecek. login.php, kullanýcý tipine göre sistemi uygun ekrana yönlendirecek.
+Kullanýcý bir admin ise admin.php
+Kullanýcý bir manager ise manager.php
+Kullanýcý bir çalýþan ise employee.php
+Kullanýcý bir müþteri ise customer.php
+
+Tablo 2: Tüm iþlerin tutulduðu ana liste: main2012
+
+--------------------------------
+
+CREATE DATABASE easyle;
+USE easyle;
+CREATE TABLE main2012 (customer_username VARCHAR(20), delivery_code VARCHAR(30), brand VARCHAR(20), model VARCHAR(20), symptoms VARCHAR(256), customer_send_date DATE, status VARCHAR(7), arrive_date DATE, employee_username VARCHAR(20), diagnosis VARCHAR(256), cure VARCHAR(256), price CURRENCY, clearance_date DATE, finish_date DATE,  send_date DATE);

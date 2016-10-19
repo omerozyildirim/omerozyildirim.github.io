@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+</head>
+<body>
+<?php
+echo ('<p>Merhaba ' . username);
+echo('<table><TR><TD>Ýþ no.</TD><TD>Durum</TD><TD>Ücret (TL)</TD><TD>Onay</TD><TD>Detay</TD></TR>');
+$result = @mysql_query( "SELECT id,status,arrive_date,price,send_date FROM tblJobs WHERE cid='$userid'" );
+if (!$result) {die('<p>Error performing query: ' . mysql_error() . '</p>');}
+while ( $row = mysql_fetch_array($result) ) {
+echo('<tr>');
+echo('<td>' . $row['id'] . '</td>');
+echo('<td>' . $row['status'] . '</td>');
+echo('<td>' . $row['price'] . '</td>');
+if ($row['clearance']==0){echo('onay bekliyor');}
+//	echo('<a href="">Onayla</a>');
+//	echo('<a href="">Reddet</a>');
+if ($row['clearance']==1){echo('onaylandý');}
+if ($row['clearance']==2){echo('reddedildi');}
+echo('<td>' . echo('<a href="jobdetail.php?=jobid=' . $row['id'] . '">Göster</a>'); . '</td>');
+echo('<td>' . $row['send_date'] . '</td>');
+echo('</tr>');
+}
+?>
+</table>
+</body>
+</html>
