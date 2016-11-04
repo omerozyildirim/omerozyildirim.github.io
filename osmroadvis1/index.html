@@ -5,19 +5,38 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>OSM Road Visualization</title>
 	<script src='leaflet/leaflet.js'></script>
-	<!--script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise"></script-->
 	<script src="leaflet/leaflet-bing-layer.js"></script>
 	<link href='leaflet/leaflet.css' rel='stylesheet' />
 	<script src="main.js"></script>
+	<style>
+		input[type="number"].prec{width: 50px;}
+	</style>
 </head>
 <body onload="init()">
-	<table border="1" width="100%" height="100%">
+<table border="0">
 	<tr>
-		<td><input type="file" id="infile" onchange="importfile(this)" /></td>
-		<td align="right">Precision:<input type="number" id="precbox" onchange="displayroad(roadsel)" min="1" max="20" value="10">(Set to 1 for the raw point set)</td>
-		<td align="left">Select road:<select id="roadsel" onchange="displayroad(this)"></select></td>
+		<td><div id="map" style="height: 500px; width: 500px;"></div></td>
+		<td valign="top">
+			<div id="controls">
+			<table border="0" >
+				<tr><th colspan="2">OSM Road Visualization v2.0</th></tr>
+				<tr><td align="right">Latitude:</td><td><input type="number" id="latout" min="-90" max="90" value="0" onchange="setlatlng(latout.value, lngout.value, zoomout.value)"></input></td></tr>
+				<tr><td align="right">Longitude:</td><td><input type="number" id="lngout" min="-180" max="180" value="0" onchange="setlatlng(latout.value, lngout.value, zoomout.value)"></input></td></tr>
+				<tr><td align="right">Zoom level:</td><td><input type="number" id="zoomout" min="1" max="18" value="1" onchange="setlatlng(latout.value, lngout.value, zoomout.value)"></input></td></tr>
+				<tr><td align="right">Remote data:</td><td align="left"><button id="acqbut" disabled onclick="acqosm(latout.value, lngout.value); this.disabled = true; roadsel.disabled = true; precbox.disabled = true;" title="Acquires a 1 latitude * 1 longitude area from OSM servers.">Download from server</button></td></tr>
+				<tr><td align="right">Local file:</td><td><input type="file" id="infile" onchange="importfile(this)" title="Select a local file to display."/></td></tr>
+				<tr><td align="right">Displayed roads:</td><td><output id="roadnum">0</output></td></tr>
+				<tr><td align="right">Omitted roads:</td><td><output id="omitnum" title="These the roads that has either less than 4 nodes or nodes outside the acquired area.">0</output></td></tr>
+				<tr><td align="right">Road ID, name:</td><td><select id="roadsel" disabled onchange="displayroad(this); precbox.disabled = false;" title="Select the id of the road to display from here."><option>--- Select ---</option></select></td></tr>
+				<tr><td align="right">Number of nodes:</td><td><output id="nodesnum">0</output></td></tr>
+				<tr><td align="right">Precision:</td><td><input type="number" class="prec" id="precbox" min="1" max="20" value="10" onchange="displayroad(roadsel)" disabled title="Number of sub-points between the nodes with which the curve is calculated. Set to 1 to display the raw node set."></td></tr>
+				<tr><td align="right">Euclidean length:</td><td><output id="linlen">0</output> m.</td></tr>
+				<tr><td align="right">Curve length:</td><td><output id="curlen" title="This is dependant on the precision.">0</output> m.</td></tr>
+				<tr><td align="right"><b>Status:</b></td><td><output id="status" title="Current status of the operation.">Waiting user interaction.</output></td></tr>
+			</table>
+			</div>
+		</td>
 	</tr>
-	<tr><td colspan="3"><div id="map" style="height: 800px"></div></td></tr>
-	</table>
+</table>
 </body>
 </html>
